@@ -16,7 +16,7 @@ export default function Navbar() {
       
       {/* Logo */}
       <a href="#" className="text-xl font-extrabold tracking-tight text-foreground">
-        Fetehadin<span className="text-primary">.</span>
+        Nezira<span className="text-primary">.</span>
       </a>
 
       {/* Navigation Links */}
