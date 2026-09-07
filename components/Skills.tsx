@@ -1,5 +1,4 @@
 export default function Skills() {
-  // Row 1: Languages & Backend
   const row1 = [
     {
       name: "Python",
@@ -33,7 +32,6 @@ export default function Skills() {
     },
   ];
 
-  // Row 2: Frontend & Application Development
   const row2 = [
     {
       name: "Next.js",
@@ -53,17 +51,7 @@ export default function Skills() {
     {
       name: "Shadcn/ui",
       iconUrl:
-        "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/shadcnui/shadcnui-original.svg",
-    },
-    {
-      name: "HTML5",
-      iconUrl:
-        "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
-    },
-    {
-      name: "CSS3",
-      iconUrl:
-        "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+        "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/shadcnui.svg",
     },
     {
       name: "Bootstrap",
@@ -71,13 +59,12 @@ export default function Skills() {
         "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
     },
     {
-      name: "Odoo",
-      iconUrl:
-        "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/odoo/odoo-original.svg",
-    },
+    name: "Odoo",
+    iconUrl:
+      "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/odoo.svg",
+  },
   ];
 
-  // Row 3: Data, DevOps & Infrastructure
   const row3 = [
     {
       name: "PostgreSQL",
@@ -125,11 +112,6 @@ export default function Skills() {
         "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg",
     },
     {
-      name: "Ubuntu",
-      iconUrl:
-        "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ubuntu/ubuntu-plain.svg",
-    },
-    {
       name: "Omarchy",
       iconUrl:
         "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons@latest/icons/omarchy.svg",
@@ -152,37 +134,31 @@ export default function Skills() {
   ];
 
   return (
-    <section className="py-16 max-w-5xl mx-auto w-full px-4 overflow-hidden">
-
-      {/* Section Header */}
+    <section className="mx-auto w-full max-w-5xl overflow-hidden px-4 py-16">
       <div className="mb-12 flex flex-col items-start text-left">
-        <div className="flex items-center gap-4 mb-4">
-          <span className="h-[1px] w-12 bg-primary/40" />
-
+        <div className="mb-4 flex items-center gap-4">
+          <span className="h-px w-12 bg-primary/40" />
           <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
             Technical Skills
           </span>
         </div>
 
-        <h2 className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl mb-4">
+        <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
           Tools & Technologies
         </h2>
 
-        <p className="text-lg text-foreground/70 max-w-2xl leading-relaxed">
-          A curated set of technologies I use to build reliable, scalable,
-          and modern digital products.
+        <p className="max-w-2xl text-lg leading-relaxed text-foreground/70">
+          A curated set of technologies I use to build reliable, scalable, and
+          modern digital products.
         </p>
       </div>
 
-      {/* Marquee */}
-      <div className="relative flex flex-col gap-6 py-4 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-
-        {/* Row 1 */}
+      <div className="relative flex flex-col gap-6 overflow-hidden py-4 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
         <div className="flex overflow-hidden">
           <div className="animate-marquee flex gap-6 pr-6">
-            {[...row1, ...row1, ...row1, ...row1].map((tech, idx) => (
+            {[...row1, ...row1, ...row1, ...row1].map((tech, index) => (
               <TechCard
-                key={`r1-${idx}`}
+                key={`r1-${index}`}
                 name={tech.name}
                 iconUrl={tech.iconUrl}
               />
@@ -190,12 +166,11 @@ export default function Skills() {
           </div>
         </div>
 
-        {/* Row 2 */}
         <div className="flex overflow-hidden">
           <div className="animate-marquee-reverse flex gap-6 pr-6">
-            {[...row2, ...row2, ...row2, ...row2].map((tech, idx) => (
+            {[...row2, ...row2, ...row2, ...row2].map((tech, index) => (
               <TechCard
-                key={`r2-${idx}`}
+                key={`r2-${index}`}
                 name={tech.name}
                 iconUrl={tech.iconUrl}
               />
@@ -203,19 +178,17 @@ export default function Skills() {
           </div>
         </div>
 
-        {/* Row 3 */}
         <div className="flex overflow-hidden">
           <div className="animate-marquee flex gap-6 pr-6">
-            {[...row3, ...row3, ...row3, ...row3].map((tech, idx) => (
+            {[...row3, ...row3, ...row3, ...row3].map((tech, index) => (
               <TechCard
-                key={`r3-${idx}`}
+                key={`r3-${index}`}
                 name={tech.name}
                 iconUrl={tech.iconUrl}
               />
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
@@ -229,14 +202,13 @@ function TechCard({
   iconUrl: string;
 }) {
   return (
-    <div className="flex items-center justify-center gap-3.5 rounded-[2rem] border border-border/80 bg-card px-7 py-3.5 shadow-sm hover:border-primary/50 hover:scale-105 transition-all duration-300 cursor-pointer whitespace-nowrap">
+    <div className="flex cursor-pointer items-center justify-center gap-3.5 whitespace-nowrap rounded-[2rem] border border-border/80 bg-card px-7 py-3.5 shadow-sm transition-all duration-300 hover:scale-105 hover:border-primary/50">
       <img
         src={iconUrl}
         alt={`${name} icon`}
         className="h-7 w-7 object-contain"
       />
-
-      <span className="text-[15px] font-bold text-foreground tracking-tight">
+      <span className="text-[15px] font-bold tracking-tight text-foreground">
         {name}
       </span>
     </div>

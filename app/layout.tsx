@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fetehadin Negash - Portfolio",
-  description: "Software Engineer Portfolio",
+  title: "Nezira W - Portfolio",
+  description: "Software Engineer Portfolio, odoo, frontend, backend, fullstacksss",
 };
 
 export default function RootLayout({

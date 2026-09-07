@@ -6,6 +6,7 @@ import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
+import Certificates from "@/components/Certificates";
 
 export default function Home() {
   return (
@@ -17,9 +18,10 @@ export default function Home() {
         <Hero />
         <About />
         <Skills />
-        <Experience />
         <Education />
+        <Experience />
         <Projects />
+        <Certificates />
       </main>
       {/* Footer naturally spans 100% of the screen width */}
       <Contact />
