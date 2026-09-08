@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { Mail, Phone, Send } from "lucide-react";
+import Magnetic from "./magnetic";
 
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
@@ -143,47 +144,59 @@ export default function Contact() {
             </div>
 
             <div className="flex w-full shrink-0 flex-wrap items-center justify-center gap-3 lg:w-auto lg:justify-end">
-              <SocialLink
-                href="https://t.me/Nezira_worku_ali"
-                label="Telegram"
-              >
-                <TelegramIcon />
-              </SocialLink>
+              <Magnetic>
+                <SocialLink
+                  href="https://t.me/Nezira_worku_ali"
+                  label="Telegram"
+                >
+                  <TelegramIcon />
+                </SocialLink>
+              </Magnetic>
 
-              <SocialLink
-                href="https://www.linkedin.com/in/neziraworkuali"
-                label="LinkedIn"
-              >
-                <LinkedinIcon />
-              </SocialLink>
+              <Magnetic>
+                <SocialLink
+                  href="https://www.linkedin.com/in/neziraworkuali"
+                  label="LinkedIn"
+                >
+                  <LinkedinIcon />
+                </SocialLink>
+              </Magnetic>
 
-              <SocialLink
-                href="https://x.com/Nezira_Worku"
-                label="X"
-              >
-                <TwitterIcon />
-              </SocialLink>
+              <Magnetic>
+                <SocialLink
+                  href="https://x.com/Nezira_Worku"
+                  label="X"
+                >
+                  <TwitterIcon />
+                </SocialLink>
+              </Magnetic>
 
-              <SocialLink
-                href="https://github.com/Jennah198"
-                label="GitHub"
-              >
-                <GithubIcon />
-              </SocialLink>
+              <Magnetic>
+                <SocialLink
+                  href="https://github.com/Jennah198"
+                  label="GitHub"
+                >
+                  <GithubIcon />
+                </SocialLink>
+              </Magnetic>
 
-              <SocialLink
-                href="mailto:neziraworku198@gmail.com"
-                label="Email"
-              >
-                <Mail className="h-5 w-5" />
-              </SocialLink>
+              <Magnetic>
+                <SocialLink
+                  href="mailto:neziraworku198@gmail.com"
+                  label="Email"
+                >
+                  <Mail className="h-5 w-5" />
+                </SocialLink>
+              </Magnetic>
 
-              <SocialLink
-                href="tel:+251900004848"
-                label="Phone"
-              >
-                <Phone className="h-5 w-5" />
-              </SocialLink>
+              <Magnetic>
+                <SocialLink
+                  href="tel:+251900004848"
+                  label="Phone"
+                >
+                  <Phone className="h-5 w-5" />
+                </SocialLink>
+              </Magnetic>
             </div>
           </div>
 

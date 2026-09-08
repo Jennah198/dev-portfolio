@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-// Import the ThemeProvider we just created
 import { ThemeProvider } from "@/components/theme-provider";
+import Script from "next/script";
+import CustomCursor from "@/components/cursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,11 +27,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col bg-background text-foreground antialiased`} suppressHydrationWarning>
+      <body 
+        className={`${geistSans.variable} ${geistMono.variable} cursor="none" min-h-full flex flex-col bg-background text-foreground antialiased cursor-none`} 
+        suppressHydrationWarning
+      >
+        <CustomCursor />
+        
+        {/* The Google Translate dropdown will appear inside this div */}
+        <div id="google_translate_element" className="absolute top-4 right-4 z-50"></div>
+
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
-          enableSystem
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}
