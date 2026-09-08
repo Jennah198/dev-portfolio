@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import Script from "next/script";
-import CustomCursor from "@/components/cursor";
+import TargetCursor from "@/components/TargetCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,11 +26,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body 
-        className={`${geistSans.variable} ${geistMono.variable} cursor="none" min-h-full flex flex-col bg-background text-foreground antialiased cursor-none`} 
-        suppressHydrationWarning
-      >
-        <CustomCursor />
+      <body className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col bg-background text-foreground antialiased`} suppressHydrationWarning>
+
+      <TargetCursor 
+        spinDuration={2}
+        hideDefaultCursor
+        parallaxOn
+        hoverDuration={0.2}
+        cursorColor="#990343" // Default cursor color
+        cursorColorOnTarget="#efa0c1" // Matches your pink primary color theme
+        />
         
         {/* The Google Translate dropdown will appear inside this div */}
         <div id="google_translate_element" className="absolute top-4 right-4 z-50"></div>
