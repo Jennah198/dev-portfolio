@@ -9,24 +9,27 @@ export default function Certificates() {
   const isHovered = useRef(false);
 
   useEffect(() => {
+    // Replaced the 3.5s jump with a continuous 1px scroll every 20ms
     const interval = setInterval(() => {
       if (!isHovered.current && scrollContainerRef.current) {
         const { scrollLeft, scrollWidth, clientWidth } =
           scrollContainerRef.current;
 
-        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+        // If we reach the end of the scroll container, reset to the start
+        if (scrollLeft + clientWidth >= scrollWidth - 1) {
           scrollContainerRef.current.scrollTo({
             left: 0,
-            behavior: "smooth",
+            behavior: "auto",
           });
         } else {
+          // Slowly glide to the right
           scrollContainerRef.current.scrollBy({
-            left: 420,
-            behavior: "smooth",
+            left: 1,
+            behavior: "auto",
           });
         }
       }
-    }, 3500);
+    }, 20); // 20ms = ~50 frames per second for smooth movement
 
     return () => clearInterval(interval);
   }, []);
@@ -34,7 +37,7 @@ export default function Certificates() {
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({
-        left: direction === "left" ? -420 : 420,
+        left: direction === "left" ? -500 : 500,
         behavior: "smooth",
       });
     }
@@ -96,21 +99,22 @@ export default function Certificates() {
   return (
     <section
       id="certificates"
-      className="mx-auto w-full max-w-4xl bg-background px-4 py-20 sm:px-6 lg:px-8"
+      // Increased max-width from 4xl to 5xl to match your Projects section
+      className="relative mx-auto w-full max-w-5xl px-4 py-20 sm:px-6 lg:px-8"
     >
       <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
         Awards & Certificates
       </h2>
 
-      <div className="ml-20 h-10 border-l border-dashed border-border" />
+      <div className="ml-4 h-10 border-l-2 border-dashed border-foreground/20 dark:border-foreground/30 sm:ml-12 md:ml-20" />
 
-      <div className="relative ml-20 border-l border-border">
-        <article className="relative">
-          <span className="absolute left-0 top-8 z-10 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-primary bg-background" />
+      <div className="relative ml-4 border-l-2 border-foreground/20 dark:border-foreground/30 sm:ml-12 md:ml-20">
+        <article className="relative z-10">
+          <span className="absolute left-0 top-8 z-10 h-3.5 w-3.5 -translate-x-[calc(50%+1px)] -translate-y-1/2 rounded-full border-[3px] border-primary bg-background" />
 
-          <div className="pl-8 pt-6">
+          <div className="pl-6 pt-6 sm:pl-8">
             <div
-              className="relative rounded-xl border border-border bg-background p-4 shadow-sm sm:p-6"
+              className="relative rounded-xl border border-border bg-background/80 p-4 shadow-sm backdrop-blur-sm sm:p-6"
               onMouseEnter={() => (isHovered.current = true)}
               onMouseLeave={() => (isHovered.current = false)}
             >
@@ -124,7 +128,8 @@ export default function Certificates() {
 
               <div
                 ref={scrollContainerRef}
-                className="flex snap-x snap-mandatory items-center gap-4 overflow-x-auto scroll-smooth pb-4 pt-2"
+                // Removed snap-x and snap-mandatory so it doesn't fight the continuous scroll
+                className="flex items-center gap-6 overflow-x-auto scroll-smooth pb-4 pt-2"
                 style={{
                   scrollbarWidth: "none",
                   msOverflowStyle: "none",
@@ -139,7 +144,8 @@ export default function Certificates() {
                 {certificates.map((cert) => (
                   <div
                     key={cert.id}
-                    className="group relative flex aspect-[4/3] w-[300px] shrink-0 snap-center items-center justify-center overflow-hidden rounded-lg border border-border bg-muted/30 p-2 sm:w-[420px]"
+                    // Removed snap-center and increased width to 500px for larger viewing
+                    className="group relative flex aspect-[4/3] w-[320px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border bg-muted/30 p-2 sm:w-[500px]"
                   >
                     <Image
                       src={cert.image}

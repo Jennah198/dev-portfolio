@@ -125,21 +125,26 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="mx-auto w-full max-w-5xl bg-background px-4 py-20 sm:px-6 lg:px-8"
+      // Removed 'bg-background' to seamlessly blend with the molten background
+      className="relative mx-auto w-full max-w-5xl px-4 py-20 sm:px-6 lg:px-8"
     >
       <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
         Projects
       </h2>
 
-      <div className="ml-20 h-10 border-l border-dashed border-border" />
+      {/* Increased border width to 2px (border-l-2) and adjusted color for better visibility */}
+      <div className="ml-4 sm:ml-12 md:ml-20 h-10 border-l-2 border-dashed border-foreground/20 dark:border-foreground/30" />
 
-      <div className="relative ml-20 border-l border-border">
+      {/* Applied the same 2px width and contrast to the main timeline track */}
+      <div className="relative ml-4 sm:ml-12 md:ml-20 border-l-2 border-foreground/20 dark:border-foreground/30">
         <div className="space-y-12">
           {projects.map((project, index) => (
-            <article key={index} className="relative">
-              <span className="absolute left-0 top-8 z-10 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-primary bg-background" />
+            <article key={index} className="relative z-10">
+              {/* Timeline dot translate adjusted to center on the 2px line */}
+              <span className="absolute left-0 top-8 z-10 h-3.5 w-3.5 -translate-x-[calc(50%+1px)] -translate-y-1/2 rounded-full border-[3px] border-primary bg-background" />
 
-              <div className="pl-8 pt-6">
+              {/* Adjusted left padding for mobile */}
+              <div className="pl-6 pt-6 sm:pl-8">
                 <div className="group relative flex flex-col items-stretch gap-0 md:flex-row">
                   <div className="relative z-10 flex min-h-[180px] w-full shrink-0 items-center justify-center overflow-hidden rounded-xl border border-border bg-muted/50 p-2 shadow-sm transition-all duration-300 group-hover:border-primary/30 md:w-[350px]">
                     <Image
@@ -154,8 +159,11 @@ export default function Projects() {
                     <div className="h-px w-8 bg-border transition-colors duration-300 group-hover:bg-primary/40" />
                   </div>
 
-                  <div className="relative z-10 mt-4 flex w-full flex-1 flex-col justify-center rounded-xl border border-border bg-background p-4 shadow-sm transition-all duration-300 group-hover:border-primary/30 md:mt-0 md:p-5">
-                    <div className="absolute -top-[16px] right-6 flex items-center gap-3.5 rounded-full border border-border bg-background px-4 py-2 opacity-0 shadow-sm transition-all duration-300 group-hover:border-primary/50 group-hover:opacity-100">
+                  {/* Added glassmorphism effect to the project card */}
+                  <div className="relative z-10 mt-4 flex w-full flex-1 flex-col justify-center rounded-xl border border-border bg-background/80 p-4 shadow-sm backdrop-blur-sm transition-all duration-300 group-hover:border-primary/30 md:mt-0 md:p-5">
+                    
+                    {/* Hidden on mobile to prevent overflow/clipping bugs */}
+                    <div className="absolute -top-[16px] right-6 hidden items-center gap-3.5 rounded-full border border-border bg-background px-4 py-2 opacity-0 shadow-sm transition-all duration-300 group-hover:border-primary/50 group-hover:opacity-100 sm:flex">
                       {project.stack.map((tech, techIndex) => {
                         const Icon = tech.icon;
 
@@ -207,10 +215,12 @@ export default function Projects() {
           ))}
         </div>
 
-        <article className="relative mt-14">
-          <span className="absolute left-0 top-8 z-10 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-primary bg-background" />
+        <article className="relative mt-14 z-10">
+          {/* Timeline dot translate adjusted to center on the 2px line */}
+          <span className="absolute left-0 top-8 z-10 h-3.5 w-3.5 -translate-x-[calc(50%+1px)] -translate-y-1/2 rounded-full border-[3px] border-primary bg-background" />
 
-          <div className="pl-8 pt-6">
+          {/* Adjusted left padding for mobile */}
+          <div className="pl-6 pt-6 sm:pl-8">
             <div className="mb-2">
               <h3 className="text-2xl font-bold tracking-tight text-primary">
                 Extra Projects
@@ -222,7 +232,8 @@ export default function Projects() {
 
               <div className="h-6" />
 
-              <div className="relative z-10 rounded-xl border border-border bg-background p-5 shadow-none md:p-6">
+              {/* Added glassmorphism effect to the extra projects container */}
+              <div className="relative z-10 rounded-xl border border-border bg-background/80 p-5 shadow-none backdrop-blur-sm md:p-6">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
                   {extraProjects.map((project, index) => (
                     <a
@@ -230,7 +241,7 @@ export default function Projects() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center rounded-md border border-border bg-background px-3 py-4 text-center text-[14px] font-medium text-foreground transition-all duration-300 hover:-translate-y-[2px] hover:border-primary hover:text-primary"
+                      className="flex items-center justify-center rounded-md border border-border bg-background/50 px-3 py-4 text-center text-[14px] font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-[2px] hover:border-primary hover:text-primary"
                     >
                       {project.name}
                     </a>

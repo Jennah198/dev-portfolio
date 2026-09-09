@@ -8,7 +8,7 @@ interface MoltenMetalProps {
   color1?: string;
   color2?: string;
   color3?: string;
-  [key: string]: any; 
+  [key: string]: unknown; 
 }
 
 export default function MoltenMetal({

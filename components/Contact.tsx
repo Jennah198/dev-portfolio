@@ -142,10 +142,6 @@ export default function Contact() {
                 <GithubIcon />
               </SocialLink>
 
-              <SocialLink href="mailto:neziraworku198@gmail.com" label="Email">
-                <Mail className="h-5 w-5" />
-              </SocialLink>
-
               <SocialLink href="tel:+251900004848" label="Phone">
                 <Phone className="h-5 w-5" />
               </SocialLink>

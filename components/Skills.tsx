@@ -59,10 +59,10 @@ export default function Skills() {
         "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
     },
     {
-    name: "Odoo",
-    iconUrl:
-      "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/odoo.svg",
-  },
+      name: "Odoo",
+      iconUrl:
+        "https://cdn.jsdelivr.net/npm/simple-icons@v13/icons/odoo.svg",
+    },
   ];
 
   const row3 = [
@@ -155,7 +155,8 @@ export default function Skills() {
 
       <div className="relative flex flex-col gap-6 overflow-hidden py-4 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
         <div className="flex overflow-hidden">
-          <div className="animate-marquee flex gap-6 pr-6">
+          {/* Added style={{ animationDuration: "50s" }} to slow down the marquee */}
+          <div className="animate-marquee flex gap-6 pr-6" style={{ animationDuration: "50s" }}>
             {[...row1, ...row1, ...row1, ...row1].map((tech, index) => (
               <TechCard
                 key={`r1-${index}`}
@@ -167,7 +168,7 @@ export default function Skills() {
         </div>
 
         <div className="flex overflow-hidden">
-          <div className="animate-marquee-reverse flex gap-6 pr-6">
+          <div className="animate-marquee-reverse flex gap-6 pr-6" style={{ animationDuration: "50s" }}>
             {[...row2, ...row2, ...row2, ...row2].map((tech, index) => (
               <TechCard
                 key={`r2-${index}`}
@@ -179,7 +180,7 @@ export default function Skills() {
         </div>
 
         <div className="flex overflow-hidden">
-          <div className="animate-marquee flex gap-6 pr-6">
+          <div className="animate-marquee flex gap-6 pr-6" style={{ animationDuration: "50s" }}>
             {[...row3, ...row3, ...row3, ...row3].map((tech, index) => (
               <TechCard
                 key={`r3-${index}`}

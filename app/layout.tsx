@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nezira W - Portfolio",
-  description: "Software Engineer Portfolio, odoo, frontend, backend, fullstack",
+  title: "Nezira W. | Full-Stack Developer",
+  description: "I build reliable enterprise systems and modern web applications. Explore my software engineering portfolio featuring Next.js, Odoo, and Python projects.",
 };
 
 export default function RootLayout({
