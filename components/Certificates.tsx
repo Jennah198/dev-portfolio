@@ -44,7 +44,6 @@ export default function Certificates() {
     }
   };
 
-  // Pause scrolling immediately when touched or hovered
   const handleInteractionStart = () => {
     isHovered.current = true;
     if (resumeTimeoutRef.current) {
@@ -53,8 +52,6 @@ export default function Certificates() {
     }
   };
 
-  // Wait 1.5s after interaction ends before resuming auto-scroll
-  // This allows mobile momentum scrolling to finish naturally without jerking
   const handleInteractionEnd = () => {
     resumeTimeoutRef.current = setTimeout(() => {
       isHovered.current = false;
@@ -123,15 +120,20 @@ export default function Certificates() {
         Awards & Certificates
       </h2>
 
-      <div className="ml-4 h-10 border-l-2 border-dashed border-foreground/20 dark:border-foreground/30 sm:ml-12 md:ml-20" />
+      {/* Hidden entirely on mobile, visible on sm and up */}
+      <div className="hidden h-10 border-l-2 border-dashed border-foreground/20 dark:border-foreground/30 sm:block sm:ml-12 md:ml-20" />
 
-      <div className="relative ml-4 border-l-2 border-foreground/20 dark:border-foreground/30 sm:ml-12 md:ml-20">
+      {/* Removed border and left-margin on mobile so the carousel aligns to the edge */}
+      <div className="relative sm:ml-12 sm:border-l-2 sm:border-foreground/20 dark:sm:border-foreground/30 md:ml-20">
         <article className="relative z-10">
-          <span className="absolute left-0 top-8 z-10 h-3.5 w-3.5 -translate-x-[calc(50%+1px)] -translate-y-1/2 rounded-full border-[3px] border-primary bg-background" />
+          
+          {/* Timeline dot hidden on mobile */}
+          <span className="absolute left-0 top-8 z-10 hidden h-3.5 w-3.5 -translate-x-[calc(50%+1px)] -translate-y-1/2 rounded-full border-[3px] border-primary bg-background sm:block" />
 
-          <div className="pl-6 pt-6 sm:pl-8">
+          {/* Removed left padding (pl-6) on mobile */}
+          <div className="pt-6 sm:pl-8">
             <div
-              className="relative rounded-xl border border-border bg-background/80 p-4 shadow-sm backdrop-blur-sm sm:p-6"
+              className="relative rounded-xl border border-border bg-background/80 p-2 shadow-sm backdrop-blur-sm sm:p-6"
               onMouseEnter={handleInteractionStart}
               onMouseLeave={handleInteractionEnd}
               onTouchStart={handleInteractionStart}
@@ -147,7 +149,7 @@ export default function Certificates() {
 
               <div
                 ref={scrollContainerRef}
-                className="flex items-center gap-6 overflow-x-auto scroll-smooth pb-4 pt-2"
+                className="flex items-center gap-4 overflow-x-auto scroll-smooth pb-4 pt-2 sm:gap-6"
                 style={{
                   scrollbarWidth: "none",
                   msOverflowStyle: "none",
@@ -162,17 +164,18 @@ export default function Certificates() {
                 {certificates.map((cert) => (
                   <div
                     key={cert.id}
-                    className="group relative flex aspect-[4/3] w-[320px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border bg-muted/30 p-2 sm:w-[500px]"
+                    // Responsive width: 85vw on mobile for maximum size, 500px fixed on desktop
+                    className="group relative flex aspect-[4/3] w-[85vw] max-w-[400px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border bg-muted/30 p-1 sm:max-w-none sm:w-[500px] sm:p-2"
                   >
                     <Image
                       src={cert.image}
                       alt={cert.title}
                       fill
-                      className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+                      className="object-contain p-1 transition-transform duration-500 group-hover:scale-105 sm:p-2"
                     />
 
                     <div className="absolute inset-0 flex items-center justify-center bg-background/80 p-4 text-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                      <span className="text-sm font-bold text-foreground sm:text-base">
+                      <span className="text-base font-bold text-foreground sm:text-lg">
                         {cert.title}
                       </span>
                     </div>

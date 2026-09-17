@@ -65,23 +65,6 @@ export default function Experience() {
         "Backend Engineering",
       ],
     },
-    {
-      company: "ALX Ethiopia",
-      role: "Frontend Developer Trainee",
-      date: "2023 – 2024",
-      location: "Remote",
-      type: "Remote · Training Program",
-      description:
-        "Completed project-based frontend development training, building practical web applications while strengthening core development, problem-solving, collaboration, and software engineering skills.",
-      skills: [
-        "JavaScript",
-        "React",
-        "HTML",
-        "CSS",
-        "Frontend Development",
-        "Git",
-      ],
-    },
   ];
 
   return (
