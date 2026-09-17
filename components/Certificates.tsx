@@ -7,31 +7,32 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 export default function Certificates() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const isHovered = useRef(false);
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Replaced the 3.5s jump with a continuous 1px scroll every 20ms
     const interval = setInterval(() => {
       if (!isHovered.current && scrollContainerRef.current) {
         const { scrollLeft, scrollWidth, clientWidth } =
           scrollContainerRef.current;
 
-        // If we reach the end of the scroll container, reset to the start
         if (scrollLeft + clientWidth >= scrollWidth - 1) {
           scrollContainerRef.current.scrollTo({
             left: 0,
             behavior: "auto",
           });
         } else {
-          // Slowly glide to the right
           scrollContainerRef.current.scrollBy({
             left: 1,
             behavior: "auto",
           });
         }
       }
-    }, 20); // 20ms = ~50 frames per second for smooth movement
+    }, 20);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    };
   }, []);
 
   const scroll = (direction: "left" | "right") => {
@@ -41,6 +42,23 @@ export default function Certificates() {
         behavior: "smooth",
       });
     }
+  };
+
+  // Pause scrolling immediately when touched or hovered
+  const handleInteractionStart = () => {
+    isHovered.current = true;
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+      resumeTimeoutRef.current = null;
+    }
+  };
+
+  // Wait 1.5s after interaction ends before resuming auto-scroll
+  // This allows mobile momentum scrolling to finish naturally without jerking
+  const handleInteractionEnd = () => {
+    resumeTimeoutRef.current = setTimeout(() => {
+      isHovered.current = false;
+    }, 1500);
   };
 
   const certificates = [
@@ -99,7 +117,6 @@ export default function Certificates() {
   return (
     <section
       id="certificates"
-      // Increased max-width from 4xl to 5xl to match your Projects section
       className="relative mx-auto w-full max-w-5xl px-4 py-20 sm:px-6 lg:px-8"
     >
       <h2 className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
@@ -115,8 +132,10 @@ export default function Certificates() {
           <div className="pl-6 pt-6 sm:pl-8">
             <div
               className="relative rounded-xl border border-border bg-background/80 p-4 shadow-sm backdrop-blur-sm sm:p-6"
-              onMouseEnter={() => (isHovered.current = true)}
-              onMouseLeave={() => (isHovered.current = false)}
+              onMouseEnter={handleInteractionStart}
+              onMouseLeave={handleInteractionEnd}
+              onTouchStart={handleInteractionStart}
+              onTouchEnd={handleInteractionEnd}
             >
               <button
                 onClick={() => scroll("left")}
@@ -128,7 +147,6 @@ export default function Certificates() {
 
               <div
                 ref={scrollContainerRef}
-                // Removed snap-x and snap-mandatory so it doesn't fight the continuous scroll
                 className="flex items-center gap-6 overflow-x-auto scroll-smooth pb-4 pt-2"
                 style={{
                   scrollbarWidth: "none",
@@ -144,7 +162,6 @@ export default function Certificates() {
                 {certificates.map((cert) => (
                   <div
                     key={cert.id}
-                    // Removed snap-center and increased width to 500px for larger viewing
                     className="group relative flex aspect-[4/3] w-[320px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border bg-muted/30 p-2 sm:w-[500px]"
                   >
                     <Image
