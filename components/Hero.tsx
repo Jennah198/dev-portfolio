@@ -9,21 +9,18 @@ const carterOne = Carter_One({
 
 export default function Hero() {
   return (
-    // Reduced top padding on mobile (pt-24) while keeping desktop the same (sm:pt-32)
     <section className="relative min-h-[calc(100vh-130px)] max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32">
-      
-      {/* 
-        Changed alignment to 'justify-center' for mobile so it balances the space top and bottom.
-        'sm:justify-end' ensures desktop stays exactly as it was.
-        Also adjusted the mobile min-height to prevent it from stretching too far down.
-      */}
       <div className="min-h-[70vh] sm:min-h-[calc(100vh-260px)] flex flex-col justify-center sm:justify-end pb-12 lg:pb-14">
         
+        {/* 1. SEO Hidden H1: Search engines and AI will read this, but humans won't see it */}
+        <h1 className="sr-only">nezira worku - Software Engineer Portfolio</h1>
+
         <p className="mb-6 text-xs sm:text-sm font-medium uppercase tracking-[0.18em] text-foreground/50">
           Software Engineer · Product Builder
         </p>
 
-        <h1
+        {/* 2. Changed from h1 to h2: Semantic structure is maintained without losing your styling */}
+        <h2
           className={`max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-bold tracking-[-0.025em] leading-[1.1] sm:leading-[0.94] text-foreground ${carterOne.className}`}
         >
           I take your idea
@@ -36,7 +33,7 @@ export default function Hero() {
           <br className="hidden sm:block" />
           <span className="sm:hidden"> </span>
           <span className="text-foreground">to production.</span>
-        </h1>
+        </h2>
 
         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
           

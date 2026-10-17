@@ -16,8 +16,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nezira W. | Full-Stack Developer",
-  description: "I build reliable enterprise systems and modern web applications. Explore my software engineering portfolio featuring Next.js, Odoo, and Python projects.",
+  title: "nezira worku | Full-Stack Developer",
+  description: "Official portfolio of nezira worku, I build reliable enterprise systems and modern web applications. Explore my software engineering portfolio featuring Next.js, Odoo, and Python projects.",
+  verification: {
+    google: "6_9wFdW3MQSNNGRCfYaSii_ByqbPn2p8wZu4PUFKvS4",
+  },
 };
 
 export default function RootLayout({
@@ -25,8 +28,41 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // SEO Structured Data (JSON-LD) for Search Engines and AI
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "nezira worku",
+    jobTitle: "full-stack developer, odoo developer, ai engineer, automation engineer",
+    url: "https://neziraworkuu.vercel.app/",
+    sameAs: [
+      "https://github.com/Jennah198","https://t.me/Nezira_worku_ali", "https://www.linkedin.com/in/neziraworkuali", "https://x.com/Nezira_Worku" ,
+    ],
+    knowsAbout: [
+      "Full-Stack Development",
+      "Next.js",
+      "React",
+      "Odoo",
+      "Python",
+      "Software Engineering",
+      "ai engineering",
+      "Automation",
+      "Enterprise Systems",
+      "Web Applications",
+      "project management",
+      "product management",
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* SEO Structured Data must go in the <head> to prevent React client errors */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body 
         className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col text-foreground antialiased relative`} 
         suppressHydrationWarning
@@ -59,7 +95,7 @@ export default function RootLayout({
         <div className="fixed inset-0 -z-10 h-full w-full pointer-events-none">
           <CursorGrid
             cellSize={70}
-            color="#E91E63" // Matched to your primary pink theme instead of purple
+            color="#E91E63"
             radius={140}
             falloff="smooth"
             holdTime={400}
