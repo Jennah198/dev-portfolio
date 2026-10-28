@@ -6,7 +6,7 @@ import { Magnetic } from "@/components/motion/Magnetic";
 
 export default function Hero() {
   return (
-    <section id="top" aria-labelledby="hero-title" className="relative pt-28 sm:pt-36">
+    <section id="top" aria-labelledby="hero-title" className="relative overflow-x-clip pt-28 sm:pt-36">
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
         <div className="lg:col-span-7">
           <div className="mb-8 flex flex-wrap items-center gap-2.5">

@@ -74,6 +74,8 @@ export type Stat = { value: number; suffix?: string; prefix?: string; label: str
 export const stats: Stat[] = [
   { value: 10, suffix: "+", label: "Projects built" },
   { value: 5, suffix: "+", label: "Internships & programs" },
+  // TODO(nezira): both hackathon certificates on the site say "Participation".
+  // Confirm placements before publishing this stat (see QUESTIONS_FOR_NEZIRA.md #1).
   { value: 2, suffix: "×", label: "Hackathon winner" },
   // The old site said "5th year", but ASTU is listed as 2023–Present.
   // Until she confirms, show the engineering + business combo instead of a year.
@@ -462,8 +464,8 @@ export type Certificate = {
 };
 
 export const certificates: Certificate[] = [
-  { title: "H.E.R Hackathon 2026", issuer: "H.E.R Hackathon", category: "Hackathons", featured: true, image: { src: "/HER.png", width: 2560, height: 1786 } },
-  { title: "ALX Her Commerce Hackathon 2026", issuer: "ALX", category: "Hackathons", featured: true, image: { src: "/herCommerce.png", width: 1280, height: 893 } },
+  { title: "H.E.R Hackathon 2026", issuer: "Cheche", category: "Hackathons", featured: true, image: { src: "/HER.png", width: 2560, height: 1786 } },
+  { title: "ALX Her Commerce Hackathon 2026", issuer: "ALX Ventures · iceaddis", category: "Hackathons", featured: true, image: { src: "/herCommerce.png", width: 1280, height: 893 } },
   { title: "ALX Frontend Development", issuer: "ALX", category: "Technical", image: { src: "/alxfrontend.png", width: 1280, height: 720 } },
   { title: "GoldenAge Frontend Development", issuer: "Golden Age Technology", category: "Technical", image: { src: "/frontend.png", width: 1280, height: 904 } },
   { title: "Udemy Programming Fundamentals", issuer: "Udemy", category: "Technical", image: { src: "/programing-fundamentals.png", width: 735, height: 573 } },
