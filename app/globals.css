@@ -269,53 +269,69 @@
 }
 
 /* =========================================================
-   Print: a clean one-page CV
+   Print: a clean one-page CV (components/PrintCV.tsx)
    ========================================================= */
+.print-only {
+  display: none;
+}
+
 @media print {
   @page {
-    margin: 14mm;
-  }
-  html {
-    font-size: 11px;
+    size: A4;
+    margin: 12mm 14mm;
   }
   body {
     background: #fff !important;
-    color: #000 !important;
+    color: #111 !important;
   }
-  .no-print,
-  nav,
+  body > *:not(.print-only),
+  header,
+  main,
+  footer,
   dialog,
-  form,
   [data-decorative] {
     display: none !important;
-  }
-  section {
-    padding-top: 0.75rem !important;
-    padding-bottom: 0.75rem !important;
-    break-inside: avoid-page;
   }
   .print-only {
     display: block !important;
   }
-  .reveal {
-    opacity: 1 !important;
-    transform: none !important;
+  .print-cv {
+    font-family: var(--font-sans);
+    font-size: 9.6pt;
+    line-height: 1.38;
+    color: #111;
   }
-  a[href^="http"]::after {
-    content: " (" attr(href) ")";
-    font-size: 0.8em;
+  .print-cv h1 {
+    font-family: var(--font-serif);
+    font-size: 24pt;
+    line-height: 1;
+    color: #770234;
+  }
+  .print-cv h2 {
+    margin: 9pt 0 3pt;
+    padding-bottom: 2pt;
+    border-bottom: 0.75pt solid #efa0c1;
+    font-size: 8.5pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #990343;
+  }
+  .print-cv header {
+    display: block !important;
+    margin-bottom: 6pt;
+  }
+  .print-cv header p {
+    margin-top: 2pt;
+  }
+  .print-cv .item {
+    margin-top: 3pt;
+    break-inside: avoid;
+  }
+  .print-cv ul {
+    margin: 1pt 0 0 12pt;
+    list-style: disc;
+  }
+  .print-cv .muted {
     color: #555;
-    word-break: break-all;
   }
-  a.no-print-url::after {
-    content: none;
-  }
-  * {
-    box-shadow: none !important;
-    text-shadow: none !important;
-    animation: none !important;
-  }
-}
-.print-only {
-  display: none;
 }

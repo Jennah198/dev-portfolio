@@ -9,6 +9,7 @@ import Education from "@/components/Education";
 import AwardsSection from "@/components/AwardsSection";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import PrintCV from "@/components/PrintCV";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <PrintCV />
     </>
   );
 }
