@@ -57,12 +57,14 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           <p className="mt-6 max-w-2xl text-lead text-muted-foreground">{study.summary}</p>
 
           <dl className="mt-10 grid gap-6 border-y border-border py-6 text-sm sm:grid-cols-3">
-            <div>
-              <dt className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Role</dt>
-              <dd className="mt-1.5 text-foreground">
-                {isTodo(study.role) ? (showTodos ? <TodoNote text={study.role} /> : "—") : study.role}
-              </dd>
-            </div>
+            {(showTodos || !isTodo(study.role)) && (
+              <div>
+                <dt className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Role</dt>
+                <dd className="mt-1.5 text-foreground">
+                  {isTodo(study.role) ? <TodoNote text={study.role} /> : study.role}
+                </dd>
+              </div>
+            )}
             <div>
               <dt className="font-mono text-xs uppercase tracking-wider text-muted-foreground">Context</dt>
               <dd className="mt-1.5 text-foreground">
