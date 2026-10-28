@@ -3,12 +3,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* =========================================================
+   Palette: Nezira's rose / lilac / cream identity.
+   Text colors are tuned for WCAG AA in both themes:
+   pink text uses 600 in light mode and 300 in dark mode.
+   ========================================================= */
 :root {
-  /* Base */
-  --background: hsl(40 33% 98%);
-  --foreground: hsl(20 14% 10%);
-
-  /* Pink Primary Palette */
   --primary-50: #fcebf2;
   --primary-100: #f6cddf;
   --primary-200: #efa0c1;
@@ -20,58 +20,70 @@
   --primary-800: #770234;
   --primary-900: #550225;
 
-  /* Semantic Colors */
-  --primary: hsl(334 96% 42%);
-  --primary-foreground: hsl(0 0% 100%);
+  --rose: #e91e63;
+  --lilac: #b497cf;
+  --cream: #f2efe9;
+  --warm-dark: #161211;
 
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(20 14% 10%);
+  --background: hsl(40 33% 98%);
+  --foreground: hsl(20 14% 10%);
+  --muted-foreground: hsl(20 8% 34%);
+  --surface: var(--cream);
+  --card: hsl(40 40% 99.5%);
+  --card-foreground: var(--foreground);
+  --border: hsl(25 18% 86%);
 
-  --border: hsl(20 14% 90%);
+  --primary: var(--primary-500);
+  --primary-foreground: #ffffff;
+  --accent-text: var(--primary-600);
+  --lilac-text: #6b4a8e;
+  --lilac-soft: rgb(180 151 207 / 0.18);
+  --ring: var(--primary-500);
+  --destructive: #b42318;
+  --success: #067647;
 
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 }
 
 .dark {
   --background: hsl(20 14% 8%);
-  --foreground: hsl(40 33% 98%);
+  --foreground: hsl(40 33% 96%);
+  --muted-foreground: hsl(30 12% 72%);
+  --surface: hsl(20 14% 10%);
+  --card: hsl(20 14% 11%);
+  --card-foreground: var(--foreground);
+  --border: hsl(20 12% 20%);
 
-  /* Pink Primary Palette */
-  --primary-50: #fcebf2;
-  --primary-100: #f6cddf;
-  --primary-200: #efa0c1;
-  --primary-300: #e772a4;
-  --primary-400: #dd3b81;
-  --primary-500: #d4045d;
-  --primary-600: #bb0452;
-  --primary-700: #990343;
-  --primary-800: #770234;
-  --primary-900: #550225;
-
-  /* Semantic Colors */
-  --primary: hsl(334 96% 42%);
-  --primary-foreground: hsl(0 0% 100%);
-
-  --card: hsl(20 14% 12%);
-  --card-foreground: hsl(40 33% 98%);
-
-  --border: hsl(20 14% 20%);
+  --primary: var(--primary-500);
+  --primary-foreground: #ffffff;
+  --accent-text: var(--primary-300);
+  --lilac-text: #cbb5e2;
+  --lilac-soft: rgb(180 151 207 / 0.12);
+  --ring: var(--primary-300);
+  --destructive: #f97066;
+  --success: #47cd89;
 }
 
-/* Expose variables to Tailwind */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-
+  --color-muted-foreground: var(--muted-foreground);
+  --color-surface: var(--surface);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-
   --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent-text: var(--accent-text);
+  --color-lilac: var(--lilac);
+  --color-lilac-text: var(--lilac-text);
+  --color-lilac-soft: var(--lilac-soft);
+  --color-rose: var(--rose);
+  --color-cream: var(--cream);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
 
-  /* Primary palette */
   --color-primary-50: var(--primary-50);
   --color-primary-100: var(--primary-100);
   --color-primary-200: var(--primary-200);
@@ -83,47 +95,192 @@
   --color-primary-800: var(--primary-800);
   --color-primary-900: var(--primary-900);
 
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Fluid type scale */
+  --text-display: clamp(2.75rem, 1.4rem + 5.6vw, 6rem);
+  --text-display--line-height: 0.98;
+  --text-h2: clamp(2.1rem, 1.5rem + 2.6vw, 3.6rem);
+  --text-h2--line-height: 1.05;
+  --text-h3: clamp(1.35rem, 1.15rem + 0.8vw, 1.75rem);
+  --text-h3--line-height: 1.2;
+  --text-lead: clamp(1.05rem, 0.98rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+
   --radius-md: var(--radius);
 }
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: var(--primary-100);
+    color: var(--primary-900);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  dialog::backdrop {
+    background: rgb(22 18 17 / 0.55);
+    backdrop-filter: blur(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* =========================================================
-   Infinite Marquee Animations
+   Signature details
    ========================================================= */
 
+/* Rose -> lilac underline that draws in on hover */
+.link-draw {
+  background-image: linear-gradient(90deg, var(--rose), var(--lilac));
+  background-size: 0% 1.5px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s ease;
+}
+.link-draw:hover,
+.link-draw:focus-visible {
+  background-size: 100% 1.5px;
+}
+
+/* Gradient hairline border that appears on hover */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--rose), var(--lilac) 60%, transparent);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.gradient-border:hover::before,
+.gradient-border:focus-within::before {
+  opacity: 1;
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--primary-500), var(--lilac) 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.dark .text-gradient {
+  background: linear-gradient(100deg, var(--primary-300), var(--lilac));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary-200), var(--lilac), transparent);
+  opacity: 0.7;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Highlights strip marquee */
 @keyframes marquee {
-  0% {
-    transform: translateX(0%);
+  from {
+    transform: translateX(0);
   }
-
-  100% {
+  to {
     transform: translateX(-50%);
   }
 }
-
-@keyframes marquee-reverse {
-  0% {
-    transform: translateX(-50%);
-  }
-
-  100% {
-    transform: translateX(0%);
-  }
-}
-
 .animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 20s linear infinite;
+  animation: marquee 40s linear infinite;
 }
-
-.animate-marquee-reverse {
-  display: flex;
-  width: max-content;
-  animation: marquee-reverse 20s linear infinite;
-}
-
-/* Pause animation on hover */
-.animate-marquee:hover,
-.animate-marquee-reverse:hover {
+.animate-marquee:hover {
   animation-play-state: paused;
+}
+
+/* =========================================================
+   Print: a clean one-page CV
+   ========================================================= */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  html {
+    font-size: 11px;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .no-print,
+  nav,
+  dialog,
+  form,
+  [data-decorative] {
+    display: none !important;
+  }
+  section {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    break-inside: avoid-page;
+  }
+  .print-only {
+    display: block !important;
+  }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555;
+    word-break: break-all;
+  }
+  a.no-print-url::after {
+    content: none;
+  }
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+  }
+}
+.print-only {
+  display: none;
 }
