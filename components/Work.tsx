@@ -25,7 +25,7 @@ export default function Work() {
       <ol className="grid gap-8">
         {caseStudies.map((p, i) => (
           <Reveal as="li" key={p.slug}>
-            <article className="gradient-border group grid overflow-hidden rounded-3xl border border-border bg-card/70 backdrop-blur md:grid-cols-12">
+            <article className="gradient-border group grid overflow-hidden rounded-3xl border border-border bg-card/70 md:grid-cols-12">
               <div className="relative overflow-hidden bg-gradient-to-br from-primary-50 to-lilac-soft p-4 sm:p-6 md:col-span-6 dark:from-primary-900/40">
                 <Image
                   src={p.image.src}
@@ -124,7 +124,7 @@ export default function Work() {
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="gradient-border group flex h-full items-start justify-between gap-3 rounded-2xl border border-border bg-card/60 p-5 backdrop-blur transition-transform duration-300 hover:-translate-y-0.5"
+                className="gradient-border group flex h-full items-start justify-between gap-3 rounded-2xl border border-border bg-card/60 p-5 transition-transform duration-300 hover:-translate-y-0.5"
               >
                 <span className="text-[15px] font-medium leading-snug text-foreground">{p.name}</span>
                 <ArrowUpRight

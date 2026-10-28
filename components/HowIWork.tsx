@@ -21,7 +21,7 @@ export default function HowIWork() {
       <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {workProcess.map((step, i) => (
           <Reveal as="li" key={step.title} delay={i * 0.06}>
-            <div className="gradient-border h-full rounded-3xl border border-border bg-card/60 p-6 backdrop-blur">
+            <div className="gradient-border h-full rounded-3xl border border-border bg-card/60 p-6">
               <span className="font-mono text-xs text-accent-text">Step {String(i + 1).padStart(2, "0")}</span>
               <h3 className="mt-4 font-serif text-2xl text-foreground">{step.title}</h3>
               <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{step.body}</p>

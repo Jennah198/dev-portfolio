@@ -23,7 +23,7 @@ export default function About() {
         </div>
       </div>
 
-      <dl className="mt-16 grid grid-cols-2 overflow-hidden rounded-3xl border border-border bg-card/60 backdrop-blur md:grid-cols-4">
+      <dl className="mt-16 grid grid-cols-2 overflow-hidden rounded-3xl border border-border bg-card/60 md:grid-cols-4">
         {stats.map((s, i) => (
           <div
             key={s.label}

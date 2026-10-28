@@ -22,7 +22,7 @@ export default async function OpengraphImage() {
           background: "#fbf9f6",
           backgroundImage:
             "radial-gradient(circle at 85% 20%, rgba(233,30,99,0.28), transparent 45%), radial-gradient(circle at 70% 90%, rgba(180,151,207,0.45), transparent 50%)",
-          padding: 72,
+          padding: "72px 64px 72px 72px",
           fontFamily: "Instrument Serif",
           color: "#1d1715",
         }}
@@ -33,8 +33,10 @@ export default async function OpengraphImage() {
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 128, lineHeight: 1 }}>Nezira Worku</div>
-            <div style={{ display: "flex", fontSize: 50, marginTop: 24, color: "#4a3f3b" }}>
-              I take your idea from&nbsp;<span style={{ fontStyle: "italic", color: "#d4045d" }}>concept</span>&nbsp;to production.
+            <div style={{ display: "flex", gap: 13, fontSize: 46, marginTop: 24, color: "#4a3f3b" }}>
+              <span>I take your idea from</span>
+              <span style={{ fontStyle: "italic", color: "#d4045d" }}>concept</span>
+              <span>to production.</span>
             </div>
           </div>
           <div style={{ display: "flex", fontSize: 28, color: "#6b4a8e" }}>

@@ -99,7 +99,8 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
               alt={study.image.alt}
               width={study.image.width}
               height={study.image.height}
-              priority
+              loading="eager"
+              fetchPriority="high"
               sizes="(min-width: 896px) 832px, 100vw"
               className="w-full rounded-xl shadow-xl"
             />

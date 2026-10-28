@@ -65,7 +65,7 @@ export default function Awards() {
               type="button"
               onClick={(e) => open(i, e.currentTarget)}
               className={cn(
-                "gradient-border group flex h-full w-full flex-col overflow-hidden rounded-3xl border bg-card/70 text-left backdrop-blur",
+                "gradient-border group flex h-full w-full flex-col overflow-hidden rounded-3xl border bg-card/70 text-left",
                 c.featured ? "border-primary-300 dark:border-primary-700" : "border-border"
               )}
             >

@@ -23,7 +23,7 @@ export default function Education() {
       <div className="grid gap-4 md:grid-cols-2">
         {degrees.map((d, i) => (
           <Reveal key={d.school} delay={i * 0.06}>
-            <article className="gradient-border h-full rounded-3xl border border-border bg-card/70 p-7 backdrop-blur sm:p-8">
+            <article className="gradient-border h-full rounded-3xl border border-border bg-card/70 p-7 sm:p-8">
               <p className="font-mono text-sm text-accent-text">{d.date}</p>
               <h3 className="mt-3 font-serif text-h3 text-foreground">{d.degree}</h3>
               <p className="mt-1 text-foreground">{d.school}</p>

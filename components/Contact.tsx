@@ -66,7 +66,7 @@ export default function Contact() {
 
   return (
     <section id="contact" aria-labelledby="contact-title" className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
-      <div className="overflow-hidden rounded-[2rem] border border-border bg-surface/90 p-6 backdrop-blur sm:p-10 lg:p-14">
+      <div className="overflow-hidden rounded-[2rem] border border-border bg-surface/90 p-6 sm:p-10 lg:p-14">
         <div className="grid gap-12 lg:grid-cols-2">
           <Reveal>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">

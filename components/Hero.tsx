@@ -10,14 +10,14 @@ export default function Hero() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
         <div className="lg:col-span-7">
           <div className="mb-8 flex flex-wrap items-center gap-2.5">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3.5 py-1.5 text-sm text-foreground backdrop-blur">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3.5 py-1.5 text-sm text-foreground">
               <span className="relative flex h-2 w-2" aria-hidden="true">
                 <span className="absolute inset-0 animate-ping rounded-full bg-success opacity-60" />
                 <span className="relative h-2 w-2 rounded-full bg-success" />
               </span>
               {site.availability}
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/70 px-3.5 py-1.5 font-mono text-xs text-muted-foreground backdrop-blur">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/70 px-3.5 py-1.5 font-mono text-xs text-muted-foreground">
               <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
               Addis Ababa · {site.timeZoneLabel} ·{" "}
               <LocalTime className="tabular-nums text-foreground" />
@@ -55,7 +55,7 @@ export default function Hero() {
               href={site.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-12 items-center gap-2 rounded-full border border-border bg-card/70 px-6 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-primary-300"
+              className="inline-flex h-12 items-center gap-2 rounded-full border border-border bg-card/70 px-6 text-sm font-medium text-foreground transition-colors hover:border-primary-300"
             >
               <FileText className="h-4 w-4 text-accent-text" aria-hidden="true" />
               Résumé
@@ -74,7 +74,7 @@ export default function Hero() {
           <div
             aria-hidden="true"
             data-decorative
-            className="absolute -inset-6 rounded-t-full bg-gradient-to-br from-primary-200 via-lilac/60 to-transparent opacity-70 blur-3xl dark:from-primary-800 dark:via-lilac/30 dark:opacity-50"
+            className="absolute -inset-10 bg-[radial-gradient(closest-side,var(--primary-200),color-mix(in_srgb,var(--lilac)_45%,transparent)_55%,transparent)] opacity-70 dark:bg-[radial-gradient(closest-side,var(--primary-800),color-mix(in_srgb,var(--lilac)_25%,transparent)_55%,transparent)] dark:opacity-60"
           />
           <figure className="relative">
             <div className="relative aspect-[4/5] overflow-hidden rounded-t-[999px] rounded-b-[2rem] border border-white/60 bg-primary-50 shadow-[0_30px_60px_-30px_rgb(85_2_37/0.45)] ring-1 ring-primary-200/60 dark:border-white/10 dark:ring-primary-800/60">
@@ -83,7 +83,8 @@ export default function Hero() {
                 alt={site.photo.alt}
                 width={site.photo.width}
                 height={site.photo.height}
-                priority
+                loading="eager"
+                fetchPriority="high"
                 sizes="(min-width: 1024px) 400px, (min-width: 640px) 384px, 304px"
                 className="h-full w-full object-cover object-[50%_30%]"
               />
@@ -96,7 +97,7 @@ export default function Hero() {
       </div>
 
       {/* Highlights strip */}
-      <div className="mt-20 border-y border-border/70 bg-card/40 py-4 backdrop-blur sm:mt-24">
+      <div className="mt-20 border-y border-border/70 bg-card/40 py-4 sm:mt-24">
         <h2 className="sr-only">Highlights</h2>
         <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
           <div className="animate-marquee flex w-max motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center">
