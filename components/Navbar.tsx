@@ -18,7 +18,9 @@ export function useThemeToggle() {
       setTheme(next);
       return;
     }
-    document.startViewTransition(() => setTheme(next));
+    const transition = document.startViewTransition(() => setTheme(next));
+    // Rapid toggles skip the previous transition; that rejection is expected.
+    transition.ready.catch(() => {});
   }, [resolvedTheme, setTheme]);
 }
 
