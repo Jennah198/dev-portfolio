@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface MoltenMetalProps {
   color1?: string;
@@ -10,16 +10,18 @@ interface MoltenMetalProps {
 
 /**
  * Soft drifting rose / lilac / cream glow behind the page.
- * Toned down to a subtle wash; static under reduced motion and hidden on small screens.
+ * Toned down to a subtle wash and hidden on small screens. The root MotionConfig
+ * (reducedMotion="user") keeps it still for people who prefer reduced motion.
  */
 export default function MoltenMetal({
   color1 = "#E91E63",
   color2 = "#B497CF",
   color3 = "#F2EFE9",
 }: MoltenMetalProps) {
-  const reduce = useReducedMotion();
-  const drift = (x: string[], y: string[], duration: number) =>
-    reduce ? {} : { animate: { x, y }, transition: { duration, repeat: Infinity, ease: "easeInOut" as const } };
+  const drift = (x: string[], y: string[], duration: number) => ({
+    animate: { x, y },
+    transition: { duration, repeat: Infinity, ease: "easeInOut" as const },
+  });
 
   return (
     <div
