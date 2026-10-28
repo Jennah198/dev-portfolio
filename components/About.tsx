@@ -1,104 +1,43 @@
-import Image from "next/image";
-import { Folder, Mail } from "lucide-react";
+import { about, stats } from "@/lib/data";
+import { CountUp } from "@/components/motion/CountUp";
+import { Reveal } from "@/components/motion/Reveal";
 
 export default function About() {
-  const stats = [
-    { value: "5th", label: "YEAR SOFTWARE ENGINEERING" },
-    { value: "10+", label: "PROJECTS BUILT" },
-    { value: "5+", label: "INTERNSHIPS & PROGRAMS" },
-    { value: "2×", label: "HACKATHON WINNER" },
-  ];
-
   return (
-    <section
-      id="about"
-      className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 lg:px-8"
-    >
-      <div className="mb-16 flex flex-col items-center gap-12 lg:flex-row">
-        <div className="relative shrink-0">
-          <div className="relative h-72 w-72 overflow-hidden rounded-3xl border border-border bg-card shadow-sm sm:h-80 sm:w-80">
-            <Image
-              src="/pink-shifon.jpg"
-              alt="Nezira"
-              fill
-              className="object-cover"
-            />
-
-            <div className="absolute bottom-4 right-4 flex h-7 w-7 items-center justify-center rounded-full border border-border bg-background shadow-md">
-              <span className="h-2.5 w-2.5 rounded-full bg-primary" />
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-start gap-4 text-left">
-          <span className="rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
-            About Me
-          </span>
-
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            I build with{" "}
-            <span className="font-serif italic text-primary">purpose</span>.
+    <section id="about" aria-labelledby="about-title" className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
+      <div className="grid gap-10 lg:grid-cols-12">
+        <Reveal className="lg:col-span-4">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            <span className="text-accent-text">00</span> — About
+          </p>
+          <h2 id="about-title" className="mt-4 font-serif text-h2 tracking-tight">
+            I build with <em className="text-accent-text">purpose</em>.
           </h2>
-
-          <p className="text-base leading-relaxed text-foreground/70">
-            I&apos;m Nezira, a Software Engineering student and product builder
-            focused on turning complex ideas into reliable digital products.
-            My work spans full-stack development, backend systems, databases,
-            and enterprise applications.
-          </p>
-
-          <p className="text-base leading-relaxed text-foreground/70">
-            My recent experience with Python, Odoo, PostgreSQL, and
-            production-oriented backend systems has pushed me deeper into
-            software architecture, data integrity, business logic, and
-            scalable applications. I still enjoy building across the stack,
-            but I&apos;m increasingly focused on the engineering behind systems
-            that need to work reliably.
-          </p>
-
-          {/* Updated Button Container for Mobile Side-by-Side */}
-          <div className="mt-4 flex w-full flex-row items-center gap-3 sm:w-auto sm:gap-4">
-            <a
-              href="https://docs.google.com/document/d/1z5Ex9RoHyJFe9RqCysidAT4FiSQjFHxEL_VcPHyEP7A/edit?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full border border-border bg-card px-2 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-card/80 hover:shadow-md sm:flex-none sm:gap-3 sm:px-6"
-            >
-              <Folder
-                className="h-4 w-4 text-primary sm:h-5 sm:w-5"
-                fill="currentColor"
-              />
-              <span className="whitespace-nowrap text-[13px] font-semibold text-foreground sm:text-sm">
-                View Resume
-              </span>
-            </a>
-
-            <a
-              href="#contact"
-              className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full border border-border bg-card px-2 text-[13px] font-medium text-foreground shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-card/80 hover:shadow-md sm:min-w-[155px] sm:flex-none sm:gap-2.5 sm:px-7 sm:text-sm"
-            >
-              <Mail className="h-4 w-4 shrink-0 text-foreground/70" />
-              <span className="whitespace-nowrap">Get in Touch</span>
-            </a>
-          </div>
+        </Reveal>
+        <div className="space-y-5 text-lead text-muted-foreground lg:col-span-8">
+          {about.paragraphs.map((p, i) => (
+            <Reveal key={i} delay={i * 0.08}>
+              <p>{p}</p>
+            </Reveal>
+          ))}
         </div>
       </div>
 
-      <div className="grid grid-cols-2 divide-x divide-y divide-border overflow-hidden rounded-2xl border border-border bg-card/60 shadow-sm md:grid-cols-4 md:divide-y-0">
-        {stats.map((stat, index) => (
+      <dl className="mt-16 grid grid-cols-2 overflow-hidden rounded-3xl border border-border bg-card/60 backdrop-blur md:grid-cols-4">
+        {stats.map((s, i) => (
           <div
-            key={index}
-            className="flex flex-col items-center justify-center p-6 text-center"
+            key={s.label}
+            className={`flex flex-col-reverse gap-2 p-6 sm:p-8 ${i % 2 === 1 ? "border-l border-border" : ""} ${i >= 2 ? "border-t border-border md:border-t-0" : ""} ${i === 2 ? "md:border-l" : ""}`}
           >
-            <span className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              {stat.value}
-            </span>
-            <span className="mt-2 text-[11px] font-semibold uppercase tracking-wider text-foreground/60">
-              {stat.label}
-            </span>
+            <dt className="font-mono text-[11px] uppercase leading-snug tracking-[0.14em] text-muted-foreground">
+              {s.label}
+            </dt>
+            <dd className="font-serif text-[clamp(2.4rem,1.8rem+2vw,3.5rem)] leading-none text-foreground">
+              {s.display ?? <CountUp value={s.value} prefix={s.prefix} suffix={s.suffix} />}
+            </dd>
           </div>
         ))}
-      </div>
+      </dl>
     </section>
   );
 }

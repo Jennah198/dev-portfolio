@@ -1,135 +1,63 @@
 import { MapPin } from "lucide-react";
+import { experience } from "@/lib/data";
+import { SectionHeading } from "@/components/SectionHeading";
+import { Reveal } from "@/components/motion/Reveal";
 
 export default function Experience() {
-  const experiences = [
-    {
-      company: "Hira Muslim Students Association",
-      role: "Lead Developer & Technical Team Leader",
-      date: "2022 – Present",
-      location: "Addis Ababa, Ethiopia",
-      type: "Leadership · Technology",
-      description:
-        "Lead the technical team in developing software products while organizing technology exhibitions, workshops, and training programs. Coordinate developers, translate organizational needs into digital solutions, and contribute to building a stronger technical community.",
-      skills: [
-        "Software Development",
-        "Team Leadership",
-        "Product Development",
-        "Technical Training",
-      ],
-    },
-    {
-      company: "Innobiz K",
-      role: "Team Lead",
-      date: "2025 – Present",
-      location: "Addis Ababa, Ethiopia",
-      type: "Startup · Innovation",
-      description:
-        "Lead and coordinate a team across hackathon and startup initiatives, managing collaboration, product development, and execution from idea to presentation.",
-      skills: [
-        "Team Leadership",
-        "Product Strategy",
-        "Hackathons",
-        "Startup Development",
-      ],
-    },
-    {
-      company: "Golden Age Technology",
-      role: "Frontend Developer & Project Manager",
-      date: "2024 – 2025",
-      location: "Jemo, Addis Ababa",
-      type: "Remote · Professional",
-      description:
-        "Worked across frontend development and project management, coordinating multiple teams and projects while contributing to the development of web-based products and maintaining collaboration across technical teams.",
-      skills: [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Project Management",
-        "Team Coordination",
-      ],
-    },
-    {
-      company: "Async Tech Service PLC",
-      role: "Full-Stack Developer",
-      date: "Summer 2025",
-      location: "Lideta, Addis Ababa",
-      type: "Hybrid · Internship",
-      description:
-        "Worked on enterprise application development using Python and Odoo, with hands-on experience in PostgreSQL, relational data modeling, business logic, ORM constraints, access control, API security, and Docker-based development. Also contributed to frontend integration with Next.js.",
-      skills: [
-        "Python",
-        "Odoo",
-        "PostgreSQL",
-        "Next.js",
-        "Docker",
-        "Backend Engineering",
-      ],
-    },
-  ];
-
   return (
-    <section
-      id="experience"
-      className="relative py-20 max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8"
-    >
-      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-8">
-        Experience
-      </h2>
+    <section id="experience" aria-labelledby="experience-title" className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
+      <SectionHeading
+        id="experience-title"
+        index="02"
+        eyebrow="Experience"
+        title={
+          <>
+            Shipping code and <em className="text-accent-text">leading teams</em>.
+          </>
+        }
+      />
 
-      {/* Increased border width to 2px (border-l-2) and adjusted color for better visibility */}
-      <div className="ml-4 sm:ml-12 md:ml-20 h-10 border-l-2 border-dashed border-foreground/20 dark:border-foreground/30" />
-
-      {/* Applied the same 2px width and contrast to the main timeline track */}
-      <div className="relative ml-4 sm:ml-12 md:ml-20 border-l-2 border-foreground/20 dark:border-foreground/30">
-        <div className="space-y-14">
-          {experiences.map((exp, index) => (
-            <article key={index} className="relative z-10">
-              {/* Adjusted translate-x to keep the badge perfectly centered on the thicker 2px line */}
-              <span className="absolute left-0 top-0 z-10 -translate-x-[10px] sm:-translate-x-[calc(50%+1px)] -translate-y-1/2 inline-flex items-center whitespace-nowrap rounded-full border-2 border-primary/30 bg-background/90 px-3 sm:px-4 py-1 sm:py-1.5 text-xs sm:text-sm font-bold text-foreground shadow-sm backdrop-blur-md">
-                {exp.date}
-              </span>
-
-              <div className="pt-8 sm:pt-6 pl-6 sm:pl-8">
-                <h3 className="text-lg sm:text-xl font-bold text-foreground">
-                  {exp.company}
-                </h3>
-
-                <p className="mt-1 text-base font-bold text-primary">
-                  {exp.role}
-                </p>
-
-                <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-foreground/55">
-                  <span className="inline-flex items-center gap-1.5">
-                    <MapPin className="h-4 w-4" />
-                    {exp.location}
-                  </span>
-
-                  <span className="h-1 w-1 rounded-full bg-border" />
-
-                  <span className="font-semibold text-primary">
-                    {exp.type}
-                  </span>
-                </div>
-
-                <p className="mt-3 max-w-2xl text-[14px] sm:text-[15px] leading-7 text-foreground/70">
-                  {exp.description}
-                </p>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {exp.skills.map((skill, idx) => (
-                    <span
-                      key={idx}
-                      className="rounded-full border border-border bg-card/80 backdrop-blur-sm px-3 py-1.5 text-[11px] font-semibold tracking-wide text-foreground/65 transition-colors duration-200 hover:border-primary/30 hover:text-primary"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+      <ol className="relative ml-1 border-l border-border sm:ml-3">
+        {experience.map((e, i) => (
+          <Reveal as="li" key={e.org} delay={i * 0.05} className="relative pb-14 pl-8 last:pb-0 sm:pl-12">
+            <span
+              aria-hidden="true"
+              className="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full border-[3px] border-background bg-gradient-to-br from-primary-500 to-lilac ring-1 ring-primary-300"
+            />
+            <div className="grid gap-4 md:grid-cols-12 md:gap-8">
+              <div className="md:col-span-3">
+                <p className="font-mono text-sm text-accent-text">{e.date}</p>
+                <p className="mt-1 font-mono text-xs uppercase tracking-wider text-muted-foreground">{e.type}</p>
               </div>
-            </article>
-          ))}
-        </div>
-      </div>
+              <div className="md:col-span-9">
+                <h3 className="font-serif text-h3 text-foreground">
+                  {e.role} <span className="text-muted-foreground">·</span>{" "}
+                  <span className="italic">{e.org}</span>
+                </h3>
+                <p className="mt-2 inline-flex items-center gap-1.5 text-sm text-muted-foreground">
+                  <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
+                  {e.location}
+                </p>
+                <ul className="mt-4 space-y-2 text-[15px] leading-relaxed text-muted-foreground">
+                  {e.bullets.map((b) => (
+                    <li key={b} className="relative pl-5">
+                      <span aria-hidden="true" className="absolute left-0 top-[0.7em] h-1 w-2.5 rounded-full bg-primary-300" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+                <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Skills used">
+                  {e.tech.map((t) => (
+                    <li key={t} className="rounded-full border border-lilac/50 bg-lilac-soft px-2.5 py-0.5 text-xs text-lilac-text">
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </ol>
     </section>
   );
 }

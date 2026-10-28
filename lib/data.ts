@@ -171,7 +171,7 @@ export const caseStudies: CaseStudy[] = [
       "A digital platform for the Hira Muslim Student Association built to strengthen communication, community engagement, and access to organizational resources. The website provides information about HMSA, its activities, initiatives, and community programs through a responsive modern interface.",
     image: { src: "/hmsa1.png", width: 987, height: 597, alt: "HMSA website hero section screenshot" },
     role: "TODO(nezira): your exact role on this project",
-    context: "Hira Muslim Students Association, where Nezira is Lead Developer",
+    context: "Hira Muslim Students Association",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
     links: [
       { label: "Live site", href: "https://v0-hira-muslim-association-website.vercel.app/", kind: "live" },

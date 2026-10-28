@@ -1,122 +1,97 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import MoltenMetal from "@/components/MoltenMetal";
 import CursorGrid from "@/components/CursorGrid";
+import CommandPalette from "@/components/CommandPalette";
+import { education, site, socials, twitterHandle } from "@/lib/data";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
-  title: "nezira worku | Full-Stack Developer",
-  description: "Official portfolio of nezira worku, I build reliable enterprise systems and modern web applications. Explore my software engineering portfolio featuring Next.js, Odoo, and Python projects.",
-  verification: {
-    google: "6_9wFdW3MQSNNGRCfYaSii_ByqbPn2p8wZu4PUFKvS4",
+  metadataBase: new URL(site.url),
+  title: { default: site.title, template: `%s · ${site.name}` },
+  description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  keywords: ["Nezira Worku", "Software Engineer", "Full-Stack Developer", "Odoo", "Python", "PostgreSQL", "Next.js", "Addis Ababa"],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "profile",
+    url: site.url,
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
+    locale: "en_US",
+    firstName: "Nezira",
+    lastName: "Worku",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: site.title,
+    description: site.description,
+    creator: twitterHandle,
+  },
+  verification: { google: site.googleVerification },
+  formatDetection: { telephone: false },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  // SEO Structured Data (JSON-LD) for Search Engines and AI
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "nezira worku",
-    jobTitle: "full-stack developer, odoo developer, ai engineer, automation engineer",
-    url: "https://neziraworkuu.vercel.app/",
-    sameAs: [
-      "https://github.com/Jennah198","https://t.me/Nezira_worku_ali", "https://www.linkedin.com/in/neziraworkuali", "https://x.com/Nezira_Worku" ,
-    ],
-    knowsAbout: [
-      "Full-Stack Development",
-      "Next.js",
-      "React",
-      "Odoo",
-      "Python",
-      "Software Engineering",
-      "ai engineering",
-      "Automation",
-      "Enterprise Systems",
-      "Web Applications",
-      "project management",
-      "product management",
-    ],
-  };
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fbf9f6" },
+    { media: "(prefers-color-scheme: dark)", color: "#171312" },
+  ],
+  colorScheme: "light dark",
+};
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  url: site.url,
+  image: `${site.url}${site.photo.src}`,
+  jobTitle: "Software Engineer",
+  description: site.description,
+  address: { "@type": "PostalAddress", addressLocality: "Addis Ababa", addressCountry: "ET" },
+  sameAs: socials.filter((s) => s.href.startsWith("http")).map((s) => s.href),
+  alumniOf: education.map((e) => ({ "@type": "EducationalOrganization", name: e.school })),
+  knowsAbout: ["Software Engineering", "Full-Stack Development", "Odoo", "Python", "PostgreSQL", "Next.js", "React", "TypeScript", "Enterprise Systems", "Project Management"],
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* SEO Structured Data must go in the <head> to prevent React client errors */}
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+    >
+      <body className="min-h-dvh antialiased">
+        {/* Opt in to scroll-reveal hiding only when JS runs; content stays visible otherwise. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.dataset.reveal=''" }} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
         />
-      </head>
-      <body 
-        className={`${geistSans.variable} ${geistMono.variable} min-h-full flex flex-col text-foreground antialiased relative`} 
-        suppressHydrationWarning
-      >
-        {/* Layer 1: Molten Background (Deepest) */}
-        <div className="fixed inset-0 -z-20 h-full w-full opacity-40 dark:opacity-20">
-          <MoltenMetal
-            color1="#E91E63"
-            color2="#B497CF"
-            color3="#F2EFE9"
-            speed={0.35}
-            scale={4}
-            detail={3}
-            glow={1.6}
-            coreSize={0.1}
-            swirl={1}
-            fold={-0.2}
-            blackPoint={0.05}
-            brightness={1.3}
-            colorMode="molten"
-            grain
-            grainIntensity={0.05}
-            mouseInteraction
-            mouseStrength={0.3}
-            opacity={1}
-          />
-        </div>
-
-        {/* Layer 2: Cursor Grid (Above Molten, Below Content) */}
-        <div className="fixed inset-0 -z-10 h-full w-full pointer-events-none">
-          <CursorGrid
-            cellSize={70}
-            color="#E91E63"
-            radius={140}
-            falloff="smooth"
-            holdTime={400}
-            fadeDuration={800}
-            lineWidth={1.2}
-            maxOpacity={1}
-            fillOpacity={0}
-            gridOpacity={0}
-            cellRadius={0}
-            clickPulse
-            pulseSpeed={600}
-          />
-        </div>
-
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange
+        <a
+          href="#main"
+          className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-transform focus:translate-y-0"
         >
+          Skip to content
+        </a>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+          <MoltenMetal color1="#E91E63" color2="#B497CF" color3="#F2EFE9" />
+          <CursorGrid color="#E91E63" />
           {children}
+          <CommandPalette />
         </ThemeProvider>
       </body>
     </html>

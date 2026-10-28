@@ -221,6 +221,23 @@
   display: none;
 }
 
+/* Scroll reveal (see components/motion/Reveal.tsx) */
+[data-reveal] .reveal:not([data-shown]) {
+  opacity: 0;
+  transform: translateY(12px);
+}
+[data-reveal] .reveal {
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] .reveal:not([data-shown]) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Highlights strip marquee */
 @keyframes marquee {
   from {
@@ -265,6 +282,10 @@
   }
   .print-only {
     display: block !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
   a[href^="http"]::after {
     content: " (" attr(href) ")";
