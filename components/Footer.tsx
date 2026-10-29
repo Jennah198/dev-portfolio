@@ -11,13 +11,12 @@ export default function Footer() {
         </p>
         <ul className="no-print flex items-center gap-1">
           {socials
-            .filter((s) => s.href.startsWith("http"))
+            .filter((s) => !s.href.startsWith("tel:"))
             .map((s) => (
               <li key={s.label}>
                 <a
                   href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(s.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   aria-label={s.label}
                   className="flex h-10 w-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-lilac-soft hover:text-foreground"
                 >

@@ -335,3 +335,154 @@
     color: #555;
   }
 }
+
+/* =========================================================
+   Stack pill: tech logos that slide in over a project's image
+   ========================================================= */
+.stack-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0.25rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px -12px rgb(85 2 37 / 0.35);
+}
+.stack-pill-item {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  color: var(--foreground);
+}
+.stack-pill-item::after {
+  content: attr(data-label);
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  translate: -50% -4px;
+  padding: 0.125rem 0.5rem;
+  border-radius: 6px;
+  background: var(--foreground);
+  color: var(--background);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, translate 0.15s;
+}
+.stack-pill-item:hover::after {
+  opacity: 1;
+  translate: -50% 0;
+}
+.project-pill {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+}
+@media (hover: hover) {
+  .project-pill {
+    opacity: 0;
+    translate: 0 -6px;
+    transition: opacity 0.25s, translate 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .project:hover .project-pill,
+  .project:focus-within .project-pill {
+    opacity: 1;
+    translate: 0 0;
+  }
+  .project-pill .stack-pill-item {
+    opacity: 0;
+    scale: 0.6;
+    transition: opacity 0.2s, scale 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .project:hover .project-pill .stack-pill-item,
+  .project:focus-within .project-pill .stack-pill-item {
+    opacity: 1;
+    scale: 1;
+  }
+  .project-pill .stack-pill-item:nth-child(2) { transition-delay: 40ms; }
+  .project-pill .stack-pill-item:nth-child(3) { transition-delay: 80ms; }
+  .project-pill .stack-pill-item:nth-child(4) { transition-delay: 120ms; }
+  .project-pill .stack-pill-item:nth-child(5) { transition-delay: 160ms; }
+}
+
+/* =========================================================
+   Cursor (components/Cursor.tsx): mouse only
+   ========================================================= */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.cursor[data-visible] {
+  opacity: 1;
+}
+.cursor-dot,
+.cursor-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  translate: -50% -50%;
+}
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid transparent;
+  border-radius: 2px;
+  background: var(--primary);
+  transition:
+    width 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    height 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-radius 0.2s,
+    background-color 0.2s,
+    border-color 0.2s,
+    opacity 0.15s,
+    scale 0.15s;
+}
+.cursor-glow {
+  width: 240px;
+  height: 240px;
+  border-radius: 999px;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--lilac) 22%, transparent), transparent);
+  transition: opacity 0.2s;
+}
+.cursor[data-mode="link"] .cursor-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+}
+.cursor[data-mode="text"] .cursor-dot,
+.cursor[data-mode="text"] .cursor-glow {
+  opacity: 0;
+}
+.cursor[data-down] .cursor-dot {
+  scale: 0.75;
+}
+html.has-cursor,
+html.has-cursor * {
+  cursor: none;
+}
+html.has-cursor :is(input, textarea, [contenteditable="true"]) {
+  cursor: text;
+}
+/* Dialogs sit in the top layer above the custom cursor, so bring the native one back. */
+html.has-cursor:has(dialog[open]),
+html.has-cursor:has(dialog[open]) * {
+  cursor: auto;
+}
+html:has(dialog[open]) .cursor {
+  display: none;
+}

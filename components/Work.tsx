@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Lock } from "lucide-react";
-import { caseStudies, githubProfile, isTodo, moreProjects } from "@/lib/data";
+import { caseStudies, githubProfile, moreProjects } from "@/lib/data";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
-import { Fact, showTodos } from "@/components/TodoNote";
 import { GithubIcon } from "@/components/icons";
+import { StackPill } from "@/components/StackPill";
 
 export default function Work() {
   return (
@@ -13,20 +13,20 @@ export default function Work() {
       <SectionHeading
         id="work-title"
         index="01"
-        eyebrow="Selected work"
+        eyebrow="Work"
         title={
           <>
-            Systems and sites, <em className="text-accent-text">built to be used</em>.
+            Selected <em className="text-accent-text">works</em>
           </>
         }
-        intro="Three projects that show how I work across ERP backends and modern frontends."
       />
 
       <ol className="grid gap-8">
         {caseStudies.map((p, i) => (
           <Reveal as="li" key={p.slug}>
-            <article className="gradient-border group grid overflow-hidden rounded-3xl border border-border bg-card/70 md:grid-cols-12">
+            <article className="project gradient-border group grid overflow-hidden rounded-3xl border border-border bg-card/70 md:grid-cols-12">
               <div className="relative overflow-hidden bg-gradient-to-br from-primary-50 to-lilac-soft p-4 sm:p-6 md:col-span-6 dark:from-primary-900/40">
+                <StackPill stack={p.stack} className="project-pill" />
                 <Image
                   src={p.image.src}
                   alt={p.image.alt}
@@ -48,28 +48,6 @@ export default function Work() {
                 </h3>
                 <p className="mt-3 text-base leading-relaxed text-muted-foreground">{p.summary}</p>
 
-                <dl className="mt-6 grid gap-3 border-t border-border pt-5 text-sm">
-                  {(showTodos || !isTodo(p.role)) && (
-                    <div className="flex gap-3">
-                      <dt className="w-16 shrink-0 font-mono text-xs uppercase tracking-wider text-muted-foreground">Role</dt>
-                      <dd className="text-foreground">
-                        <Fact value={p.role} />
-                      </dd>
-                    </div>
-                  )}
-                  <div className="flex gap-3">
-                    <dt className="w-16 shrink-0 font-mono text-xs uppercase tracking-wider text-muted-foreground">Stack</dt>
-                    <dd>
-                      <ul className="flex flex-wrap gap-1.5">
-                        {p.stack.map((t) => (
-                          <li key={t} className="rounded-full border border-lilac/50 bg-lilac-soft px-2.5 py-0.5 text-xs text-lilac-text">
-                            {t}
-                          </li>
-                        ))}
-                      </ul>
-                    </dd>
-                  </div>
-                </dl>
 
                 <div className="relative z-10 mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-7">
                   <Link

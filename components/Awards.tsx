@@ -2,19 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Trophy, X, Expand } from "lucide-react";
-import { certificates, type CertificateCategory } from "@/lib/data";
+import { Award, ChevronLeft, ChevronRight, Expand, Trophy, X } from "lucide-react";
+import { certificates } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
-const filters: ("All" | CertificateCategory)[] = ["All", "Hackathons", "Technical", "Leadership"];
-
 export default function Awards() {
-  const [filter, setFilter] = useState<(typeof filters)[number]>("All");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const opener = useRef<HTMLElement | null>(null);
 
-  const visible = certificates.filter((c) => filter === "All" || c.category === filter);
+  const visible = certificates;
   const current = openIndex === null ? null : visible[openIndex];
 
   useEffect(() => {
@@ -39,57 +36,39 @@ export default function Awards() {
 
   return (
     <>
-      <div role="group" aria-label="Filter certificates" className="mb-8 flex flex-wrap gap-2">
-        {filters.map((f) => (
-          <button
-            key={f}
-            type="button"
-            aria-pressed={filter === f}
-            onClick={() => setFilter(f)}
-            className={cn(
-              "rounded-full border px-4 py-2 text-sm transition-colors",
-              filter === f
-                ? "border-primary bg-primary text-primary-foreground"
-                : "border-border bg-card/60 text-foreground hover:border-primary-300"
-            )}
-          >
-            {f}
-          </button>
-        ))}
-      </div>
-
-      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="grid grid-cols-1 border-t border-border md:grid-cols-2 md:gap-x-12">
         {visible.map((c, i) => (
-          <li key={c.title} className={cn(c.featured && "lg:col-span-2")}>
+          <li key={c.title} className="border-b border-border">
             <button
               type="button"
+              aria-haspopup="dialog"
               onClick={(e) => open(i, e.currentTarget)}
-              className={cn(
-                "gradient-border group flex h-full w-full flex-col overflow-hidden rounded-3xl border bg-card/70 text-left",
-                c.featured ? "border-primary-300 dark:border-primary-700" : "border-border"
-              )}
+              className="group flex w-full items-center gap-4 py-4 text-left"
             >
-              <span className="relative block aspect-[4/3] w-full overflow-hidden bg-surface">
-                <Image
-                  src={c.image.src}
-                  alt=""
-                  fill
-                  sizes={c.featured ? "(min-width: 1024px) 560px, (min-width: 640px) 50vw, 100vw" : "(min-width: 1024px) 280px, (min-width: 640px) 50vw, 100vw"}
-                  className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.04]"
-                />
-                <span className="absolute right-3 top-3 rounded-full bg-background/85 p-1.5 opacity-0 transition-opacity group-hover:opacity-100">
-                  <Expand className="h-4 w-4 text-foreground" aria-hidden="true" />
-                </span>
-              </span>
-              <span className="flex flex-1 flex-col gap-1 p-5">
-                {c.featured && (
-                  <span className="mb-1 inline-flex w-fit items-center gap-1.5 rounded-full bg-primary px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wider text-primary-foreground">
-                    <Trophy className="h-3 w-3" aria-hidden="true" /> Hackathon
-                  </span>
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border",
+                  c.featured
+                    ? "border-primary-200 bg-primary-50 text-accent-text dark:border-primary-800 dark:bg-primary-900/40"
+                    : "border-border bg-card text-muted-foreground"
                 )}
-                <span className="font-medium text-foreground">{c.title}</span>
-                <span className="text-sm text-muted-foreground">{c.issuer}</span>
+              >
+                {c.featured ? <Trophy className="h-4 w-4" /> : <Award className="h-4 w-4" />}
               </span>
+              <span className="min-w-0 flex-1">
+                <span className="block truncate font-medium text-foreground transition-colors group-hover:text-accent-text">
+                  {c.title}
+                </span>
+                <span className="block truncate text-sm text-muted-foreground">{c.issuer}</span>
+              </span>
+              <span className="hidden shrink-0 font-mono text-[11px] uppercase tracking-wider text-muted-foreground sm:block">
+                {c.category}
+              </span>
+              <Expand
+                className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-accent-text"
+                aria-hidden="true"
+              />
             </button>
           </li>
         ))}

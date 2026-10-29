@@ -1,4 +1,4 @@
-import { Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import type { Social } from "@/lib/data";
 
 type IconProps = { className?: string };
@@ -45,6 +45,8 @@ export function SocialIcon({ icon, className }: { icon: Social["icon"]; classNam
       return <TelegramIcon className={className} />;
     case "x":
       return <XIcon className={className} />;
+    case "email":
+      return <Mail aria-hidden="true" className={className ?? "h-5 w-5"} />;
     case "phone":
       return <Phone aria-hidden="true" className={className ?? "h-5 w-5"} />;
   }

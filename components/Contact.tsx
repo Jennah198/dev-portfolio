@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { ArrowUpRight, Check, Copy, Loader2, Send } from "lucide-react";
-import { isTodo, site, socials } from "@/lib/data";
+import { Check, Copy, Loader2, Send } from "lucide-react";
+import { site, socials } from "@/lib/data";
 import { SocialIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -12,10 +12,9 @@ const MIN_MESSAGE = 10;
 const MAX_MESSAGE = 5000;
 
 export default function Contact() {
+  const phone = socials.find((s) => s.icon === "phone");
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [copied, setCopied] = useState(false);
-  const hasEmail = !isTodo(site.email);
-  const telegram = socials.find((s) => s.icon === "telegram");
 
   async function copy(text: string) {
     try {
@@ -80,52 +79,60 @@ export default function Contact() {
               I&apos;ll get back to you.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-2">
-              {hasEmail ? (
+            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
+              <span className="w-16 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">Email</span>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={`mailto:${site.email}`}
+                  className="text-[17px] text-foreground underline decoration-border underline-offset-[6px] transition-colors hover:decoration-primary"
+                >
+                  {site.email}
+                </a>
                 <button
                   type="button"
                   onClick={() => copy(site.email)}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 text-sm"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:border-primary-300 hover:text-foreground"
                 >
                   {copied ? <Check className="h-4 w-4 text-success" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
-                  {copied ? "Copied" : site.email}
+                  {copied ? "Copied" : "Copy"}
+                  <span className="sr-only"> email address</span>
                 </button>
-              ) : (
-                telegram && (
-                  <button
-                    type="button"
-                    onClick={() => copy(telegram.handle)}
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2.5 font-mono text-sm"
-                  >
-                    {copied ? <Check className="h-4 w-4 text-success" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
-                    {copied ? "Copied" : `Telegram ${telegram.handle}`}
-                  </button>
-                )
-              )}
-              <span role="status" className="sr-only">
-                {copied ? "Copied to clipboard" : ""}
-              </span>
+                <span role="status" className="sr-only">
+                  {copied ? "Copied to clipboard" : ""}
+                </span>
+              </div>
             </div>
 
-            <ul className="mt-8 grid gap-2 sm:grid-cols-2">
-              {socials.map((s) => (
-                <li key={s.label}>
-                  <a
-                    href={s.href}
-                    {...(s.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="group flex items-center gap-3 rounded-2xl border border-border bg-card/70 px-4 py-3 transition-colors hover:border-primary-300"
-                  >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-50 text-primary-700 dark:bg-primary-900/60 dark:text-primary-200">
-                      <SocialIcon icon={s.icon} className="h-4 w-4" />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block text-sm font-medium text-foreground">{s.label}</span>
-                      <span className="block truncate font-mono text-xs text-muted-foreground">{s.handle}</span>
-                    </span>
-                    <ArrowUpRight className="ml-auto h-4 w-4 text-muted-foreground group-hover:text-accent-text" aria-hidden="true" />
-                  </a>
-                </li>
-              ))}
+            {phone && (
+              <div className="mt-3 flex flex-wrap items-center gap-x-8 gap-y-3">
+                <span className="w-16 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">Phone</span>
+                <a
+                  href={phone.href}
+                  className="text-[17px] text-foreground underline decoration-border underline-offset-[6px] transition-colors hover:decoration-primary"
+                >
+                  {phone.handle}
+                </a>
+              </div>
+            )}
+
+            <ul className="mt-8 flex flex-wrap gap-2">
+              {socials
+                .filter((s) => s.href.startsWith("http"))
+                .map((s) => (
+                  <li key={s.label}>
+                    <a
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={s.handle}
+                      className="inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground shadow-[0_6px_20px_-12px_rgb(85_2_37/0.3)] transition-[border-color,transform] hover:-translate-y-0.5 hover:border-primary-300"
+                    >
+                      <SocialIcon icon={s.icon} className="h-[18px] w-[18px]" />
+                      {s.label}
+                      <span className="sr-only"> (opens in a new tab)</span>
+                    </a>
+                  </li>
+                ))}
             </ul>
           </Reveal>
 

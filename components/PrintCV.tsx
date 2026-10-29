@@ -11,7 +11,7 @@ export default function PrintCV() {
           {site.role} · {site.location} ({site.timeZoneLabel})
         </p>
         <p className="muted">
-          {site.url.replace("https://", "")} · {links.map((l) => `${l.label}: ${l.href.replace(/^https:\/\/(www\.)?/, "")}`).join(" · ")}
+          {site.email} · {site.url.replace("https://", "")} · {links.map((l) => `${l.label}: ${l.href.replace(/^https:\/\/(www\.)?/, "")}`).join(" · ")}
         </p>
       </header>
 

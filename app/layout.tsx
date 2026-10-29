@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import MoltenMetal from "@/components/MoltenMetal";
 import CursorGrid from "@/components/CursorGrid";
+import Cursor from "@/components/Cursor";
 import CommandPalette from "@/components/CommandPalette";
 import { education, site, socials, twitterHandle } from "@/lib/data";
 
@@ -58,6 +59,7 @@ const jsonLd = {
   "@type": "Person",
   name: site.name,
   url: site.url,
+  email: `mailto:${site.email}`,
   image: `${site.url}${site.photo.src}`,
   jobTitle: "Software Engineer",
   description: site.description,
@@ -92,6 +94,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <CursorGrid color="#E91E63" />
           {children}
           <CommandPalette />
+          <Cursor />
         </ThemeProvider>
       </body>
     </html>

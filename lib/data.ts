@@ -33,22 +33,22 @@ export const site = {
   resumeUrl:
     "https://docs.google.com/document/d/1z5Ex9RoHyJFe9RqCysidAT4FiSQjFHxEL_VcPHyEP7A/edit?usp=sharing",
   googleVerification: "6_9wFdW3MQSNNGRCfYaSii_ByqbPn2p8wZu4PUFKvS4",
-  // No public email has been published yet, so the copy-email action is hidden.
-  email: "TODO(nezira): public email address to show on the site",
+  email: "neziraworku198@gmail.com",
 } as const;
 
 export type Social = {
   label: string;
   handle: string;
   href: string;
-  icon: "telegram" | "linkedin" | "x" | "github" | "phone";
+  icon: "email" | "telegram" | "linkedin" | "x" | "github" | "phone";
 };
 
 export const socials: Social[] = [
-  { label: "LinkedIn", handle: "neziraworkuali", href: "https://www.linkedin.com/in/neziraworkuali", icon: "linkedin" },
+  { label: "Email", handle: "neziraworku198@gmail.com", href: "mailto:neziraworku198@gmail.com", icon: "email" },
   { label: "GitHub", handle: "Jennah198", href: "https://github.com/Jennah198", icon: "github" },
-  { label: "Telegram", handle: "@Nezira_worku_ali", href: "https://t.me/Nezira_worku_ali", icon: "telegram" },
+  { label: "LinkedIn", handle: "neziraworkuali", href: "https://www.linkedin.com/in/neziraworkuali", icon: "linkedin" },
   { label: "X", handle: "@Nezira_Worku", href: "https://x.com/Nezira_Worku", icon: "x" },
+  { label: "Telegram", handle: "@Nezira_worku_ali", href: "https://t.me/Nezira_worku_ali", icon: "telegram" },
   { label: "Phone", handle: "+251 900 004 848", href: "tel:+251900004848", icon: "phone" },
 ];
 
@@ -67,19 +67,6 @@ export const highlights = [
   "Lead Developer at HMSA",
   "H.E.R Hackathon 2026",
   "ALX Her Commerce Hackathon 2026",
-];
-
-export type Stat = { value: number; suffix?: string; prefix?: string; label: string; display?: string };
-
-export const stats: Stat[] = [
-  { value: 10, suffix: "+", label: "Projects built" },
-  { value: 5, suffix: "+", label: "Internships & programs" },
-  // TODO(nezira): both hackathon certificates on the site say "Participation".
-  // Confirm placements before publishing this stat (see QUESTIONS_FOR_NEZIRA.md #1).
-  { value: 2, suffix: "×", label: "Hackathon winner" },
-  // The old site said "5th year", but ASTU is listed as 2023–Present.
-  // Until she confirms, show the engineering + business combo instead of a year.
-  { value: 2, label: "Studying engineering + business", display: "SE + BA" },
 ];
 
 /* ------------------------------------------------------------------ */

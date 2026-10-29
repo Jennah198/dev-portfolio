@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { TodoNote, showTodos } from "@/components/TodoNote";
 import { caseStudies, isTodo, site } from "@/lib/data";
+import { StackPill, TechChips } from "@/components/StackPill";
 
 export function generateStaticParams() {
   return caseStudies.map((c) => ({ slug: c.slug }));
@@ -95,7 +96,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
             </div>
           </dl>
 
-          <figure className="mt-12 overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary-50 to-lilac-soft p-4 sm:p-8 dark:from-primary-900/40">
+          <figure className="relative mt-12 overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary-50 to-lilac-soft p-4 sm:p-8 dark:from-primary-900/40">
             <Image
               src={study.image.src}
               alt={study.image.alt}
@@ -106,6 +107,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
               sizes="(min-width: 896px) 832px, 100vw"
               className="w-full rounded-xl shadow-xl"
             />
+            <StackPill stack={study.stack} className="absolute right-6 top-6 sm:right-10 sm:top-10" />
           </figure>
 
           <div className="mt-16 space-y-14">
@@ -129,13 +131,9 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
 
             <section aria-labelledby="ch-stack">
               <h2 id="ch-stack" className="font-serif text-h3">Stack</h2>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {study.stack.map((t) => (
-                  <li key={t} className="rounded-full border border-lilac/50 bg-lilac-soft px-3 py-1 text-sm text-lilac-text">
-                    {t}
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-4">
+                <TechChips stack={study.stack} />
+              </div>
             </section>
           </div>
 

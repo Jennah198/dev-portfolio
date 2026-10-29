@@ -12,7 +12,7 @@ on the site, which both say "Certificate of Participation".
 
 ```bash
 npm ci
-npm run dev          # http://localhost:3000; TODO(nezira) notes are visible here
+npm run dev          # http://localhost:3000 (3001 here; 3000 was taken); TODO(nezira) notes are visible here
 npm run build && npm start   # production view; TODO notes are hidden
 ```
 
@@ -51,7 +51,7 @@ Experience → How I work + recruiter FAQ → Skills → Education → Awards �
 | Navbar | "Nezira W." pill, 5 links | "Nezira *Worku*" wordmark, active-section indicator, glass on scroll, ⌘K button, Résumé button, accessible mobile menu (Esc, aria-expanded) |
 | Hero | Hidden lowercase h1, Carter One headline | Real h1 with her name, role line, value line, availability badge, live Addis Ababa time, arch photo, 3 CTAs (magnetic primary) |
 | Highlights | — | Strip: Odoo/ERP internship · Team Lead at Innobiz K · Lead Dev at HMSA · both 2026 hackathons |
-| Stats | Static, "5th year" | Count-up (respects reduced motion); year replaced by "SE + BA" until confirmed |
+| Stats | Static, "5th year" | Removed |
 | Projects | Timeline cards, tech icons only on hover | Case-study cards: outcome line, context, role (when known), stack chips, links, NDA tag, "Read case study" |
 | Case studies | — | `/work/[slug]`: Problem → Role → Architecture → Challenges → Outcome → Stack, plus next-project link |
 | Experience | HMSA first | Async Tech (strongest engineering role) first; bullets + tech chips |
@@ -92,6 +92,20 @@ Experience → How I work + recruiter FAQ → Skills → Education → Awards �
   `Retry-After` on bursts. The rate limit is best-effort, per serverless instance.
 - `next/image` everywhere with width/height/alt/sizes. AVIF is served first. The hero loads with
   `fetchPriority="high"` (`priority` is deprecated in Next 16).
+
+## Second round (feedback from review)
+- Hero fills the first screen with the highlights strip at the bottom; smaller photo,
+  centred in its column; the long intro paragraph is gone.
+- Stats row removed.
+- Work: heading is now "Selected works", intro line removed, Role/Stack rows removed from
+  cards. Hovering (or focusing) a project slides in a pill of tech logos with name tooltips;
+  case-study pages show the same pill on the screenshot and logo chips under "Stack".
+- Custom cursor: a small rose square with a soft lilac glow that opens into an outline over
+  links (mouse only; native cursor inside dialogs and text fields).
+- Certificates: compact two-column list instead of the image grid and filters; clicking a row
+  opens the existing lightbox.
+- Contact: email (neziraworku198@gmail.com) with a Copy button, phone row, and GitHub /
+  LinkedIn / X / Telegram buttons. The email is also in the footer, print CV, /cv.md and JSON-LD.
 
 ## Quality checks
 

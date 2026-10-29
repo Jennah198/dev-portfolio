@@ -9,6 +9,7 @@ export function cvMarkdown() {
     "",
     site.description,
     "",
+    `- Email: ${site.email}`,
     `- Website: ${site.url}`,
     `- Résumé: ${site.resumeUrl}`,
     ...socials.filter((s) => s.href.startsWith("http")).map((s) => `- ${s.label}: ${s.href}`),

@@ -1,5 +1,4 @@
-import { about, stats } from "@/lib/data";
-import { CountUp } from "@/components/motion/CountUp";
+import { about } from "@/lib/data";
 import { Reveal } from "@/components/motion/Reveal";
 
 export default function About() {
@@ -23,21 +22,6 @@ export default function About() {
         </div>
       </div>
 
-      <dl className="mt-16 grid grid-cols-2 overflow-hidden rounded-3xl border border-border bg-card/60 md:grid-cols-4">
-        {stats.map((s, i) => (
-          <div
-            key={s.label}
-            className={`flex flex-col-reverse gap-2 p-6 sm:p-8 ${i % 2 === 1 ? "border-l border-border" : ""} ${i >= 2 ? "border-t border-border md:border-t-0" : ""} ${i === 2 ? "md:border-l" : ""}`}
-          >
-            <dt className="font-mono text-[11px] uppercase leading-snug tracking-[0.14em] text-muted-foreground">
-              {s.label}
-            </dt>
-            <dd className="font-serif text-[clamp(2.4rem,1.8rem+2vw,3.5rem)] leading-none text-foreground">
-              {s.display ?? <CountUp value={s.value} prefix={s.prefix} suffix={s.suffix} />}
-            </dd>
-          </div>
-        ))}
-      </dl>
     </section>
   );
 }

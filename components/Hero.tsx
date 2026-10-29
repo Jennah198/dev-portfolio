@@ -6,8 +6,8 @@ import { Magnetic } from "@/components/motion/Magnetic";
 
 export default function Hero() {
   return (
-    <section id="top" aria-labelledby="hero-title" className="relative overflow-x-clip pt-28 sm:pt-36">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
+    <section id="top" aria-labelledby="hero-title" className="relative flex min-h-[100svh] flex-col overflow-x-clip pt-28 sm:pt-32">
+      <div className="mx-auto my-auto grid w-full max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
         <div className="lg:col-span-7">
           <div className="mb-8 flex flex-wrap items-center gap-2.5">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3.5 py-1.5 text-sm text-foreground">
@@ -36,12 +36,7 @@ export default function Hero() {
             I take your idea from <em className="text-gradient pr-1">concept</em> to production.
           </p>
 
-          <p className="mt-5 max-w-xl text-lead text-muted-foreground">
-            Software Engineering student and full-stack builder focused on reliable enterprise
-            systems with Python, Odoo and PostgreSQL, and modern web apps with Next.js.
-          </p>
-
-          <div className="mt-9 flex flex-wrap items-center gap-3">
+          <div className="mt-10 flex flex-wrap items-center gap-3">
             <Magnetic>
               <a
                 href="#work"
@@ -70,14 +65,14 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[19rem] sm:max-w-sm lg:col-span-5 lg:max-w-none lg:pl-8">
+        <div className="relative mx-auto w-full max-w-[13rem] sm:max-w-[15rem] lg:col-span-5 lg:max-w-[18rem]">
           <div
             aria-hidden="true"
             data-decorative
-            className="absolute -inset-10 bg-[radial-gradient(closest-side,var(--primary-200),color-mix(in_srgb,var(--lilac)_45%,transparent)_55%,transparent)] opacity-70 dark:bg-[radial-gradient(closest-side,var(--primary-800),color-mix(in_srgb,var(--lilac)_25%,transparent)_55%,transparent)] dark:opacity-60"
+            className="absolute -inset-6 bg-[radial-gradient(closest-side,var(--primary-200),color-mix(in_srgb,var(--lilac)_45%,transparent)_55%,transparent)] opacity-70 dark:bg-[radial-gradient(closest-side,var(--primary-800),color-mix(in_srgb,var(--lilac)_25%,transparent)_55%,transparent)] dark:opacity-60"
           />
           <figure className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-t-[999px] rounded-b-[2rem] border border-white/60 bg-primary-50 shadow-[0_30px_60px_-30px_rgb(85_2_37/0.45)] ring-1 ring-primary-200/60 dark:border-white/10 dark:ring-primary-800/60">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-t-[999px] rounded-b-[2rem] border border-white/60 bg-primary-50 shadow-[0_24px_48px_-28px_rgb(85_2_37/0.45)] ring-1 ring-primary-200/60 dark:border-white/10 dark:ring-primary-800/60">
               <Image
                 src={site.photo.src}
                 alt={site.photo.alt}
@@ -85,11 +80,11 @@ export default function Hero() {
                 height={site.photo.height}
                 loading="eager"
                 fetchPriority="high"
-                sizes="(min-width: 1024px) 400px, (min-width: 640px) 384px, 304px"
+                sizes="(min-width: 1024px) 288px, (min-width: 640px) 240px, 208px"
                 className="h-full w-full object-cover object-[50%_30%]"
               />
             </div>
-            <figcaption className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-border bg-card px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground shadow-sm">
+            <figcaption className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-border bg-card px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground shadow-sm">
               Engineer · Builder · Leader
             </figcaption>
           </figure>
@@ -97,7 +92,7 @@ export default function Hero() {
       </div>
 
       {/* Highlights strip */}
-      <div className="mt-20 border-y border-border/70 bg-card/40 py-4 sm:mt-24">
+      <div className="mt-14 border-y border-border/70 bg-card/40 py-4">
         <h2 className="sr-only">Highlights</h2>
         <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
           <div className="animate-marquee flex w-max motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center">
