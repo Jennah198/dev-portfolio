@@ -1,13 +1,22 @@
 import Image from "next/image";
 import { ArrowDown, FileText, MapPin, Mail } from "lucide-react";
-import { highlights, site } from "@/lib/data";
+import { education, experience, highlights, site } from "@/lib/data";
 import { LocalTime } from "@/components/LocalTime";
 import { Magnetic } from "@/components/motion/Magnetic";
 
+const latest = experience[0];
+const degrees = education.filter((e) => e.kind === "degree");
+
+/** Quick facts under the CTAs, all pulled from lib/data.ts. */
+const heroFacts = [
+  { label: "Latest role", value: `${latest.role}, ${latest.org.replace(/ PLC$/, "")}` },
+  ...degrees.map((d, i) => ({ label: i === 0 ? "Studying" : "Also studying", value: `${d.degree}, ${d.school.match(/\((.+)\)$/)?.[1] ?? d.school}` })),
+];
+
 export default function Hero() {
   return (
-    <section id="top" aria-labelledby="hero-title" className="relative flex min-h-[100svh] flex-col overflow-x-clip pt-28 sm:pt-32">
-      <div className="mx-auto my-auto grid w-full max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
+    <section id="top" aria-labelledby="hero-title" className="relative flex min-h-[100svh] flex-col overflow-x-clip pt-32 sm:pt-36">
+      <div className="mx-auto my-auto grid w-full max-w-6xl items-center gap-14 px-4 pb-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
         <div className="lg:col-span-7">
           <div className="mb-8 flex flex-wrap items-center gap-2.5">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3.5 py-1.5 text-sm text-foreground">
@@ -16,11 +25,6 @@ export default function Hero() {
                 <span className="relative h-2 w-2 rounded-full bg-success" />
               </span>
               {site.availability}
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card/70 px-3.5 py-1.5 font-mono text-xs text-muted-foreground">
-              <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-              Addis Ababa · {site.timeZoneLabel} ·{" "}
-              <LocalTime className="tabular-nums text-foreground" />
             </span>
           </div>
 
@@ -63,16 +67,30 @@ export default function Hero() {
               <span className="link-draw pb-0.5">Contact</span>
             </a>
           </div>
+
+          <dl className="mt-12 grid max-w-2xl grid-cols-1 gap-5 border-t border-border pt-6 sm:grid-cols-3 sm:gap-6">
+            {heroFacts.map((f) => (
+              <div key={f.label}>
+                <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">{f.label}</dt>
+                <dd className="mt-1.5 text-sm leading-snug text-foreground">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[13rem] sm:max-w-[15rem] lg:col-span-5 lg:max-w-[18rem]">
+        <div className="relative mx-auto w-full max-w-[16rem] sm:max-w-[18rem] lg:col-span-5 lg:mr-3 lg:max-w-[20rem]">
           <div
             aria-hidden="true"
             data-decorative
-            className="absolute -inset-6 bg-[radial-gradient(closest-side,var(--primary-200),color-mix(in_srgb,var(--lilac)_45%,transparent)_55%,transparent)] opacity-70 dark:bg-[radial-gradient(closest-side,var(--primary-800),color-mix(in_srgb,var(--lilac)_25%,transparent)_55%,transparent)] dark:opacity-60"
+            className="absolute -inset-10 bg-[radial-gradient(closest-side,var(--primary-200),color-mix(in_srgb,var(--lilac)_40%,transparent)_55%,transparent)] opacity-60 dark:bg-[radial-gradient(closest-side,var(--primary-800),color-mix(in_srgb,var(--lilac)_22%,transparent)_55%,transparent)] dark:opacity-50"
           />
-          <figure className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-t-[999px] rounded-b-[2rem] border border-white/60 bg-primary-50 shadow-[0_24px_48px_-28px_rgb(85_2_37/0.45)] ring-1 ring-primary-200/60 dark:border-white/10 dark:ring-primary-800/60">
+          {/* Corner brackets */}
+          <span aria-hidden="true" data-decorative className="absolute -left-3 -top-3 h-5 w-5 border-l-2 border-t-2 border-primary-400" />
+          <span aria-hidden="true" data-decorative className="absolute -right-3 -top-3 h-5 w-5 border-r-2 border-t-2 border-primary-400" />
+          <span aria-hidden="true" data-decorative className="absolute -bottom-3 -left-3 h-5 w-5 border-b-2 border-l-2 border-primary-400" />
+          <span aria-hidden="true" data-decorative className="absolute -bottom-3 -right-3 h-5 w-5 border-b-2 border-r-2 border-primary-400" />
+          <figure className="relative rounded-md border border-border bg-card p-3 shadow-[0_24px_50px_-28px_rgb(85_2_37/0.45)]">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-primary-50">
               <Image
                 src={site.photo.src}
                 alt={site.photo.alt}
@@ -80,12 +98,18 @@ export default function Hero() {
                 height={site.photo.height}
                 loading="eager"
                 fetchPriority="high"
-                sizes="(min-width: 1024px) 288px, (min-width: 640px) 240px, 208px"
+                sizes="(min-width: 1024px) 296px, (min-width: 640px) 264px, 232px"
                 className="h-full w-full object-cover object-[50%_30%]"
               />
             </div>
-            <figcaption className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-border bg-card px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground shadow-sm">
-              Engineer · Builder · Leader
+            <figcaption className="flex items-center justify-between px-0.5 pb-0.5 pt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              <span className="inline-flex items-center gap-1.5">
+                <MapPin className="h-3 w-3 text-accent-text" aria-hidden="true" />
+                Addis Ababa
+              </span>
+              <span>
+                {site.timeZoneLabel} · <LocalTime className="tabular-nums text-foreground" />
+              </span>
             </figcaption>
           </figure>
         </div>

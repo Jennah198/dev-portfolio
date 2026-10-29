@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Lock } from "lucide-react";
-import { caseStudies, githubProfile, moreProjects } from "@/lib/data";
+import { caseStudies, githubProfile, isTodo, moreProjects } from "@/lib/data";
 import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
 import { GithubIcon } from "@/components/icons";
@@ -47,6 +47,21 @@ export default function Work() {
                   </Link>
                 </h3>
                 <p className="mt-3 text-base leading-relaxed text-muted-foreground">{p.summary}</p>
+
+                <dl className="mt-6 grid gap-4 border-t border-border pt-5 text-[15px] leading-relaxed">
+                  {[
+                    ["The problem", p.sections.problem.find((t) => !isTodo(t))],
+                    ["How it's built", p.sections.architecture.find((t) => !isTodo(t))],
+                  ].map(
+                    ([label, text]) =>
+                      text && (
+                        <div key={label}>
+                          <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent-text">{label}</dt>
+                          <dd className="mt-1 text-foreground/85">{text}</dd>
+                        </div>
+                      )
+                  )}
+                </dl>
 
 
                 <div className="relative z-10 mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-7">

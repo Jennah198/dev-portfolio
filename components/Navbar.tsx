@@ -75,7 +75,7 @@ export default function Navbar({ home = true }: { home?: boolean }) {
       <nav
         aria-label="Primary"
         className={cn(
-          "mx-auto max-w-6xl rounded-2xl border px-4 py-2.5 transition-[background-color,border-color,box-shadow] duration-300 sm:px-5",
+          "mx-auto max-w-6xl rounded-2xl border px-4 py-2.5 transition-[background-color,border-color,box-shadow] duration-300 sm:px-5 lg:px-[1.9375rem]",
           scrolled || open
             ? "border-border/70 bg-background/75 shadow-[0_8px_30px_-12px_rgb(85_2_37/0.18)] backdrop-blur-xl"
             : "border-transparent bg-transparent"

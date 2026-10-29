@@ -94,11 +94,13 @@ Experience → How I work + recruiter FAQ → Skills → Education → Awards �
   `fetchPriority="high"` (`priority` is deprecated in Next 16).
 
 ## Second round (feedback from review)
-- Hero fills the first screen with the highlights strip at the bottom; smaller photo,
-  centred in its column; the long intro paragraph is gone.
+- Hero fills the first screen with the highlights strip at the bottom and lines up with the
+  navbar. The long intro paragraph is gone; a short facts row (latest role, both degrees,
+  pulled from lib/data.ts) sits under the buttons. The photo is a rectangular framed card
+  with rose corner brackets and an "Addis Ababa · GMT+3 · live time" caption.
 - Stats row removed.
 - Work: heading is now "Selected works", intro line removed, Role/Stack rows removed from
-  cards. Hovering (or focusing) a project slides in a pill of tech logos with name tooltips;
+  cards; each card instead shows "The problem" and "How it's built" from the case study. Hovering (or focusing) a project slides in a pill of tech logos with name tooltips;
   case-study pages show the same pill on the screenshot and logo chips under "Stack".
 - Custom cursor: a small rose square with a soft lilac glow that opens into an outline over
   links (mouse only; native cursor inside dialogs and text fields).
