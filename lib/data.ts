@@ -24,12 +24,6 @@ export const site = {
   location: "Addis Ababa, Ethiopia",
   timeZone: "Africa/Addis_Ababa",
   timeZoneLabel: "GMT+3",
-  photo: {
-    src: "/pink-shifon.jpg",
-    alt: "Portrait of Nezira Worku in a pink chiffon headscarf",
-    width: 720,
-    height: 1280,
-  },
   resumeUrl:
     "https://docs.google.com/document/d/1z5Ex9RoHyJFe9RqCysidAT4FiSQjFHxEL_VcPHyEP7A/edit?usp=sharing",
   googleVerification: "6_9wFdW3MQSNNGRCfYaSii_ByqbPn2p8wZu4PUFKvS4",

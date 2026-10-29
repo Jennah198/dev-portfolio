@@ -49,7 +49,7 @@ Experience → How I work + recruiter FAQ → Skills → Education → Awards �
 | Section | Before | After |
 |---|---|---|
 | Navbar | "Nezira W." pill, 5 links | "Nezira *Worku*" wordmark, active-section indicator, glass on scroll, ⌘K button, Résumé button, accessible mobile menu (Esc, aria-expanded) |
-| Hero | Hidden lowercase h1, Carter One headline | Real h1 with her name, role line, value line, availability badge, live Addis Ababa time, arch photo, 3 CTAs (magnetic primary) |
+| Hero | Hidden lowercase h1, Carter One headline | Real h1 with her name, role line, value line, availability badge, live Addis Ababa time, quick facts, 3 CTAs (magnetic primary); no photo (at her request) |
 | Highlights | — | Strip: Odoo/ERP internship · Team Lead at Innobiz K · Lead Dev at HMSA · both 2026 hackathons |
 | Stats | Static, "5th year" | Removed |
 | Projects | Timeline cards, tech icons only on hover | Case-study cards: outcome line, context, role (when known), stack chips, links, NDA tag, "Read case study" |
@@ -76,7 +76,7 @@ Experience → How I work + recruiter FAQ → Skills → Education → Awards �
 ### Recruiter + SEO
 - Title "Nezira Worku — Software Engineer & Product Builder", description, canonical,
   Open Graph (`profile`) and Twitter cards with `@Nezira_Worku`.
-- Generated **OG/Twitter image** (1200×630, her palette and photo) and a monogram favicon + Apple icon.
+- Generated **OG/Twitter image** (1200×630, her palette and name; no photo) and a monogram favicon + Apple icon.
 - **JSON-LD `Person`** with jobTitle, sameAs, alumniOf, address and knowsAbout.
 - `robots.txt`, sitemap (home, case studies, cv.md), `theme-color` for both themes.
 - **`/cv.md`** and **`/llms.txt`**: plain-text résumé for ATS parsers and AI tools.
@@ -94,11 +94,12 @@ Experience → How I work + recruiter FAQ → Skills → Education → Awards �
   `fetchPriority="high"` (`priority` is deprecated in Next 16).
 
 ## Second round (feedback from review)
-- Hero is exactly one screen tall (photo and spacing scale with screen height), so the
-  highlights strip is always visible at the bottom. It lines up with the
-  navbar. The long intro paragraph is gone; a short facts row (latest role, both degrees,
-  pulled from lib/data.ts) sits under the buttons. The photo is a rectangular framed card
-  with rose corner brackets and an "Addis Ababa · GMT+3 · live time" caption.
+- **Her photo is removed everywhere, at her request**: hero, link-preview (OG/Twitter) image,
+  JSON-LD, and `public/pink-shifon.jpg` itself. The hero is now type-only: name, tagline and
+  buttons on the left, a facts column on the right (latest role, both degrees, Addis Ababa
+  with live time).
+- The hero is exactly one screen tall, so the highlights strip is always visible at the bottom
+  (checked from 360×740 to 1920×1080). It lines up with the navbar.
 - Stats row removed.
 - Work: heading is now "Selected works", intro line removed, Role/Stack rows removed from
   cards; each card instead shows "The problem" and "How it's built" from the case study. Hovering (or focusing) a project slides in a pill of tech logos with name tooltips;
@@ -138,7 +139,7 @@ Lighthouse `benchmarkIndex` was about 420–500, while Lighthouse's default 4× 
 assumes a fast desktop (~1500+). The "calibrated" runs use `cpuSlowdownMultiplier=1.2` to
 approximate a mid-range phone on this hardware. The **≥ 90 mobile Performance target is not yet
 confirmed**. Run PageSpeed Insights against a Vercel preview deployment for authoritative
-numbers. The remaining cost is mostly React hydration plus the hero photo.
+numbers. The remaining cost is mostly React hydration.
 
 ## Not done / follow-ups
 - Case studies are thin until Nezira answers the questions. TODO sections are hidden in production.

@@ -1,56 +1,53 @@
-import Image from "next/image";
-import { ArrowDown, FileText, MapPin, Mail } from "lucide-react";
+import { ArrowDown, FileText, Mail } from "lucide-react";
 import { education, experience, highlights, site } from "@/lib/data";
 import { LocalTime } from "@/components/LocalTime";
 import { Magnetic } from "@/components/motion/Magnetic";
 
 const latest = experience[0];
 const degrees = education.filter((e) => e.kind === "degree");
+const shortSchool = (school: string) => school.match(/\((.+)\)$/)?.[1] ?? school;
 
-/** Quick facts under the CTAs, all pulled from lib/data.ts. */
+/** Quick facts beside the headline, all pulled from lib/data.ts. */
 const heroFacts = [
   { label: "Latest role", value: `${latest.role}, ${latest.org.replace(/ PLC$/, "")}` },
-  ...degrees.map((d, i) => ({ label: i === 0 ? "Studying" : "Also studying", value: `${d.degree}, ${d.school.match(/\((.+)\)$/)?.[1] ?? d.school}` })),
+  ...degrees.map((d, i) => ({ label: i === 0 ? "Studying" : "Also studying", value: `${d.degree}, ${shortSchool(d.school)}` })),
 ];
+
+// Tighten spacing on short screens so the highlights strip always stays on the first screen.
+const SHORT = "[@media(max-height:780px)]";
 
 export default function Hero() {
   return (
     <section id="top" aria-labelledby="hero-title" className="relative flex h-[100svh] min-h-[36rem] flex-col overflow-x-clip pt-20 sm:pt-24">
-      <div className="mx-auto grid min-h-0 w-full max-w-6xl flex-1 items-center gap-10 px-4 py-4 sm:px-6 lg:grid-cols-12 lg:px-8">
-        <div className="lg:col-span-7">
-          <div className="mb-6 flex items-center justify-between gap-4 sm:mb-8 [@media(max-height:800px)]:mb-5">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3.5 py-1.5 text-sm text-foreground">
-              <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="absolute inset-0 animate-ping rounded-full bg-success opacity-60" />
-                <span className="relative h-2 w-2 rounded-full bg-success" />
-              </span>
-              {site.availability}
+      <div className="mx-auto grid min-h-0 w-full max-w-6xl flex-1 content-center items-end gap-10 px-4 py-6 sm:px-6 lg:grid-cols-12 lg:gap-12 lg:px-8">
+        <div className="lg:col-span-8">
+          <span className={`mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3.5 py-1.5 text-sm text-foreground ${SHORT}:mb-5`}>
+            <span className="relative flex h-2 w-2" aria-hidden="true">
+              <span className="absolute inset-0 animate-ping rounded-full bg-success opacity-60" />
+              <span className="relative h-2 w-2 rounded-full bg-success" />
             </span>
-            <span className="relative block w-20 shrink-0 rounded-sm border border-border bg-card p-1 shadow-sm [@media(min-height:800px)]:w-24 sm:w-28 lg:hidden">
-              <Image
-                src={site.photo.src}
-                alt=""
-                width={site.photo.width}
-                height={site.photo.height}
-                sizes="112px"
-                className="aspect-[4/5] w-full rounded-[2px] object-cover object-[50%_30%]"
-              />
-            </span>
-          </div>
+            {site.availability}
+          </span>
 
-          <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-accent-text sm:mb-5 sm:text-sm [@media(max-height:800px)]:mb-3">
+          <p className={`mb-4 font-mono text-xs uppercase tracking-[0.22em] text-accent-text sm:mb-5 sm:text-sm ${SHORT}:mb-3`}>
             {site.role}
           </p>
 
-          <h1 id="hero-title" className="font-serif text-display tracking-[-0.02em] text-foreground [@media(max-height:800px)]:text-[clamp(2.6rem,1.6rem+3.6vw,4.75rem)]">
+          <h1
+            id="hero-title"
+            className={`font-serif text-[clamp(3.25rem,1.6rem+6.4vw,7.5rem)] leading-[0.95] tracking-[-0.025em] text-foreground ${SHORT}:text-[clamp(3rem,1.6rem+4.6vw,5.75rem)]`}
+          >
             Nezira Worku
           </h1>
 
-          <p className="mt-4 max-w-xl font-serif text-[clamp(1.45rem,1.1rem+1.4vw,2.2rem)] leading-[1.15] text-foreground sm:mt-6 [@media(max-height:800px)]:mt-3">
-            I take your idea from <em className="text-gradient pr-1">concept</em> to production.
+          <p
+            className={`mt-5 max-w-2xl font-serif text-[clamp(1.5rem,1.1rem+1.5vw,2.4rem)] leading-[1.15] text-muted-foreground sm:mt-7 ${SHORT}:mt-4`}
+          >
+            I take your idea from <em className="text-gradient pr-1">concept</em> to{" "}
+            <span className="text-foreground">production</span>.
           </p>
 
-          <div className="mt-7 flex flex-wrap items-center gap-3 sm:mt-9 [@media(max-height:800px)]:mt-6">
+          <div className={`mt-8 flex flex-wrap items-center gap-3 sm:mt-10 ${SHORT}:mt-6`}>
             <Magnetic>
               <a
                 href="#work"
@@ -69,60 +66,27 @@ export default function Hero() {
               <FileText className="h-4 w-4 text-accent-text" aria-hidden="true" />
               Résumé
             </a>
-            <a
-              href="#contact"
-              className="inline-flex h-12 items-center gap-2 rounded-full px-4 text-sm font-medium text-foreground"
-            >
+            <a href="#contact" className="inline-flex h-12 items-center gap-2 rounded-full px-4 text-sm font-medium text-foreground">
               <Mail className="h-4 w-4 text-accent-text" aria-hidden="true" />
               <span className="link-draw pb-0.5">Contact</span>
             </a>
           </div>
-
-          <dl className="mt-8 grid max-w-2xl grid-cols-1 gap-3 border-t border-border pt-5 sm:mt-10 sm:grid-cols-3 sm:gap-6 [@media(max-height:800px)]:mt-6 [@media(max-height:800px)]:pt-4">
-            {heroFacts.map((f) => (
-              <div key={f.label}>
-                <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">{f.label}</dt>
-                <dd className="mt-1 text-sm leading-snug text-foreground">{f.value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
 
-        <div className="relative hidden w-fit justify-self-end lg:col-span-5 lg:mr-3 lg:block">
-          <div
-            aria-hidden="true"
-            data-decorative
-            className="absolute -inset-10 bg-[radial-gradient(closest-side,var(--primary-200),color-mix(in_srgb,var(--lilac)_40%,transparent)_55%,transparent)] opacity-60 dark:bg-[radial-gradient(closest-side,var(--primary-800),color-mix(in_srgb,var(--lilac)_22%,transparent)_55%,transparent)] dark:opacity-50"
-          />
-          {/* Corner brackets */}
-          <span aria-hidden="true" data-decorative className="absolute -left-3 -top-3 h-5 w-5 border-l-2 border-t-2 border-primary-400" />
-          <span aria-hidden="true" data-decorative className="absolute -right-3 -top-3 h-5 w-5 border-r-2 border-t-2 border-primary-400" />
-          <span aria-hidden="true" data-decorative className="absolute -bottom-3 -left-3 h-5 w-5 border-b-2 border-l-2 border-primary-400" />
-          <span aria-hidden="true" data-decorative className="absolute -bottom-3 -right-3 h-5 w-5 border-b-2 border-r-2 border-primary-400" />
-          <figure className="relative rounded-md border border-border bg-card p-3 shadow-[0_24px_50px_-28px_rgb(85_2_37/0.45)]">
-            <div className="relative aspect-[4/5] h-[min(52svh,25rem)] overflow-hidden rounded-sm bg-primary-50">
-              <Image
-                src={site.photo.src}
-                alt={site.photo.alt}
-                width={site.photo.width}
-                height={site.photo.height}
-                loading="eager"
-                fetchPriority="high"
-                sizes="320px"
-                className="h-full w-full object-cover object-[50%_30%]"
-              />
+        <dl className="grid grid-cols-2 gap-x-6 gap-y-4 border-t border-border pt-5 text-sm lg:col-span-4 lg:grid-cols-1 lg:gap-0 lg:divide-y lg:divide-border lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+          {heroFacts.map((f) => (
+            <div key={f.label} className="lg:py-4 lg:first:pt-0">
+              <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">{f.label}</dt>
+              <dd className="mt-1 leading-snug text-foreground">{f.value}</dd>
             </div>
-            <figcaption className="flex items-center justify-between px-0.5 pb-0.5 pt-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-              <span className="inline-flex items-center gap-1.5">
-                <MapPin className="h-3 w-3 text-accent-text" aria-hidden="true" />
-                Addis Ababa
-              </span>
-              <span>
-                {site.timeZoneLabel} · <LocalTime className="tabular-nums text-foreground" />
-              </span>
-            </figcaption>
-          </figure>
-        </div>
+          ))}
+          <div className="lg:py-4 lg:last:pb-0">
+            <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">Based in</dt>
+            <dd className="mt-1 leading-snug text-foreground">
+              Addis Ababa · {site.timeZoneLabel} · <LocalTime className="tabular-nums" />
+            </dd>
+          </div>
+        </dl>
       </div>
 
       {/* Highlights strip */}

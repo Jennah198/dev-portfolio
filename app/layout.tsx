@@ -60,7 +60,6 @@ const jsonLd = {
   name: site.name,
   url: site.url,
   email: `mailto:${site.email}`,
-  image: `${site.url}${site.photo.src}`,
   jobTitle: "Software Engineer",
   description: site.description,
   address: { "@type": "PostalAddress", addressLocality: "Addis Ababa", addressCountry: "ET" },
