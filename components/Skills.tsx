@@ -27,7 +27,7 @@ export default function Skills() {
                 {group.skills.map((s) => (
                   <li
                     key={s.name}
-                    className="flex items-center gap-2 rounded-full border border-border bg-background/70 py-1.5 pl-2 pr-3.5 text-sm text-foreground transition-[box-shadow,border-color] duration-300 hover:border-lilac hover:shadow-[0_0_0_4px_var(--lilac-soft),0_8px_24px_-6px_rgb(180_151_207/0.55)]"
+                    className="flex items-center gap-2 rounded-full border border-border bg-background/70 py-1.5 pl-2 pr-3.5 text-sm text-foreground transition-[box-shadow,border-color] duration-300 hover:border-lilac hover:shadow-[0_0_0_4px_var(--lilac-soft),0_8px_24px_-6px_color-mix(in_srgb,var(--lilac)_55%,transparent)]"
                   >
                     <Image
                       src={`/icons/${s.icon}.svg`}

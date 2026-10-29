@@ -111,6 +111,17 @@ Experience → How I work + recruiter FAQ → Skills → Education → Awards �
 - Contact: email (neziraworku198@gmail.com) with a Copy button, phone row, and GitHub /
   LinkedIn / X / Telegram buttons. The email is also in the footer, print CV, /cv.md and JSON-LD.
 
+## Third round
+- **Navbar** restyled after the reference: a boxed bar with an "NW" monogram + name (no
+  photo), links in the middle, and square buttons for ⌘K, theme and accent colour, plus a
+  "Contact me" button. Résumé stays in the hero, the mobile menu and the ⌘K palette.
+- **Accent colour switcher.** Rose stays the default (her identity). The square swatch in the
+  navbar, or "Change accent colour" in ⌘K, cycles through Ocean, Teal, Violet and Graphite.
+  The whole page follows it: buttons, links, gradients, glow, cursor and grid. The choice is
+  remembered per visitor, applied before first paint (no flash), and every palette passes
+  the axe WCAG AA check in light and dark mode. Palettes live in `app/globals.css`
+  (`:root[data-accent=…]`); the list is in `components/AccentSwatch.tsx`.
+
 ## Quality checks
 
 | Check | Result |

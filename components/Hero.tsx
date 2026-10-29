@@ -51,7 +51,7 @@ export default function Hero() {
             <Magnetic>
               <a
                 href="#work"
-                className="group inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground shadow-[0_10px_30px_-10px_rgb(212_4_93/0.6)] transition-colors hover:bg-primary-600"
+                className="group inline-flex h-12 items-center gap-2 rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground shadow-[0_10px_30px_-10px_color-mix(in_srgb,var(--primary)_60%,transparent)] transition-colors hover:bg-primary-600"
               >
                 View my work
                 <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" aria-hidden="true" />

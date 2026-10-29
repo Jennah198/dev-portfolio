@@ -2,9 +2,10 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { ArrowRight, Copy, ExternalLink, FileText, Keyboard, Moon, Printer, Search } from "lucide-react";
+import { ArrowRight, Copy, ExternalLink, FileText, Keyboard, Moon, Palette, Printer, Search } from "lucide-react";
 import { isTodo, sections, site, socials } from "@/lib/data";
 import { OPEN_PALETTE_EVENT, useThemeToggle } from "@/components/Navbar";
+import { nextAccent } from "@/components/AccentSwatch";
 import { cn } from "@/lib/utils";
 
 type Action = {
@@ -58,6 +59,7 @@ export default function CommandPalette() {
         run: () => goTo(s.id),
       })),
       { id: "theme", label: "Toggle dark mode", group: "Actions", hint: "T", icon: Moon, run: toggleTheme },
+      { id: "accent", label: "Change accent colour", group: "Actions", icon: Palette, run: nextAccent },
       {
         id: "resume",
         label: "Open résumé",

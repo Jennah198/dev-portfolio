@@ -125,7 +125,7 @@ export default function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       title={s.handle}
-                      className="inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground shadow-[0_6px_20px_-12px_rgb(85_2_37/0.3)] transition-[border-color,transform] hover:-translate-y-0.5 hover:border-primary-300"
+                      className="inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-3.5 text-sm font-semibold text-foreground shadow-[0_6px_20px_-12px_color-mix(in_srgb,var(--primary-900)_30%,transparent)] transition-[border-color,transform] hover:-translate-y-0.5 hover:border-primary-300"
                     >
                       <SocialIcon icon={s.icon} className="h-[18px] w-[18px]" />
                       {s.label}

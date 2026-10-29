@@ -10,9 +10,9 @@ interface MoltenMetalProps {
  * and still under prefers-reduced-motion (see .molten-blob in globals.css).
  */
 export default function MoltenMetal({
-  color1 = "#E91E63",
-  color2 = "#B497CF",
-  color3 = "#F2EFE9",
+  color1 = "var(--rose)",
+  color2 = "var(--lilac)",
+  color3 = "var(--cream)",
 }: MoltenMetalProps) {
   return (
     <div

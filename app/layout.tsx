@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import MoltenMetal from "@/components/MoltenMetal";
 import CursorGrid from "@/components/CursorGrid";
 import Cursor from "@/components/Cursor";
+import { accentScript } from "@/components/AccentSwatch";
 import CommandPalette from "@/components/CommandPalette";
 import { education, site, socials, twitterHandle } from "@/lib/data";
 
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="min-h-dvh antialiased">
         {/* Opt in to scroll-reveal hiding only when JS runs; content stays visible otherwise. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.dataset.reveal=''" }} />
+        <script dangerouslySetInnerHTML={{ __html: accentScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
@@ -89,8 +91,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Skip to content
         </a>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-          <MoltenMetal color1="#E91E63" color2="#B497CF" color3="#F2EFE9" />
-          <CursorGrid color="#E91E63" />
+          <MoltenMetal />
+          <CursorGrid />
           {children}
           <CommandPalette />
           <Cursor />

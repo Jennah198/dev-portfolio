@@ -64,6 +64,97 @@
   --success: #47cd89;
 }
 
+/* =========================================================
+   Accent palettes (components/AccentSwatch.tsx). Rose is the default
+   and Nezira's identity; these are optional, professional alternatives.
+   The "500" slot is the button colour, so each one passes AA with white text.
+   ========================================================= */
+:root[data-accent="ocean"] {
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-200: #bfdbfe;
+  --primary-300: #93c5fd;
+  --primary-400: #60a5fa;
+  --primary-500: #2563eb;
+  --primary-600: #1d4ed8;
+  --primary-700: #1e40af;
+  --primary-800: #1e3a8a;
+  --primary-900: #172554;
+  --rose: var(--primary-500);
+  --lilac: #7dd3fc;
+  --lilac-text: #1e40af;
+  --lilac-soft: rgb(125 211 252 / 0.18);
+}
+.dark[data-accent="ocean"] {
+  --lilac-text: #bfdbfe;
+  --lilac-soft: rgb(125 211 252 / 0.12);
+}
+:root[data-accent="teal"] {
+  --primary-50: #f0fdfa;
+  --primary-100: #ccfbf1;
+  --primary-200: #99f6e4;
+  --primary-300: #5eead4;
+  --primary-400: #2dd4bf;
+  --primary-500: #0f766e;
+  --primary-600: #115e59;
+  --primary-700: #134e4a;
+  --primary-800: #0f3d3a;
+  --primary-900: #042f2e;
+  --rose: var(--primary-500);
+  --lilac: #6ee7b7;
+  --lilac-text: #115e59;
+  --lilac-soft: rgb(110 231 183 / 0.18);
+}
+.dark[data-accent="teal"] {
+  --lilac-text: #99f6e4;
+  --lilac-soft: rgb(110 231 183 / 0.12);
+}
+:root[data-accent="violet"] {
+  --primary-50: #f5f3ff;
+  --primary-100: #ede9fe;
+  --primary-200: #ddd6fe;
+  --primary-300: #c4b5fd;
+  --primary-400: #a78bfa;
+  --primary-500: #7c3aed;
+  --primary-600: #6d28d9;
+  --primary-700: #5b21b6;
+  --primary-800: #4c1d95;
+  --primary-900: #2e1065;
+  --rose: var(--primary-500);
+  --lilac: #c4b5fd;
+  --lilac-text: #5b21b6;
+  --lilac-soft: rgb(196 181 253 / 0.18);
+}
+.dark[data-accent="violet"] {
+  --lilac-text: #ddd6fe;
+  --lilac-soft: rgb(196 181 253 / 0.12);
+}
+:root[data-accent="graphite"] {
+  --primary-50: #f8fafc;
+  --primary-100: #f1f5f9;
+  --primary-200: #e2e8f0;
+  --primary-300: #cbd5e1;
+  --primary-400: #94a3b8;
+  --primary-500: #334155;
+  --primary-600: #1e293b;
+  --primary-700: #1e293b;
+  --primary-800: #0f172a;
+  --primary-900: #020617;
+  --rose: var(--primary-500);
+  --lilac: #94a3b8;
+  --lilac-text: #334155;
+  --lilac-soft: rgb(148 163 184 / 0.18);
+}
+.dark[data-accent="graphite"] {
+  --lilac-text: #cbd5e1;
+  --lilac-soft: rgb(148 163 184 / 0.12);
+}
+
+/* The swatch in the navbar shows the current accent. */
+.accent-swatch {
+  background: linear-gradient(135deg, var(--primary-500), var(--lilac));
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -348,7 +439,7 @@
   border-radius: 999px;
   background: color-mix(in srgb, var(--card) 88%, transparent);
   backdrop-filter: blur(8px);
-  box-shadow: 0 8px 24px -12px rgb(85 2 37 / 0.35);
+  box-shadow: 0 8px 24px -12px color-mix(in srgb, var(--primary-900) 35%, transparent);
 }
 .stack-pill-item {
   position: relative;

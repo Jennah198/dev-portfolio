@@ -15,7 +15,7 @@ interface CursorGridProps {
  * doesn't re-render. Hidden on touch devices and under reduced motion.
  */
 export default function CursorGrid({
-  color = "#E91E63",
+  color = "var(--rose)",
   cellSize = 72,
   radius = 160,
   lineWidth = 1,
@@ -42,6 +42,7 @@ export default function CursorGrid({
     };
   }, []);
 
+  const line = `color-mix(in srgb, ${color} 19%, transparent)`;
   const mask = `radial-gradient(${radius}px circle at var(--x, -1000px) var(--y, -1000px), black 0%, transparent 100%)`;
 
   return (
@@ -51,7 +52,7 @@ export default function CursorGrid({
       data-decorative
       className="pointer-events-none fixed inset-0 -z-10 hidden md:block"
       style={{
-        backgroundImage: `linear-gradient(to right, ${color}30 ${lineWidth}px, transparent ${lineWidth}px), linear-gradient(to bottom, ${color}30 ${lineWidth}px, transparent ${lineWidth}px)`,
+        backgroundImage: `linear-gradient(to right, ${line} ${lineWidth}px, transparent ${lineWidth}px), linear-gradient(to bottom, ${line} ${lineWidth}px, transparent ${lineWidth}px)`,
         backgroundSize: `${cellSize}px ${cellSize}px`,
         maskImage: mask,
         WebkitMaskImage: mask,

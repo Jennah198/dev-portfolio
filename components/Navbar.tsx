@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
-import { Menu, X, Sun, Moon, FileText, Command } from "lucide-react";
+import { Menu, X, Sun, Moon, FileText, Command, Send } from "lucide-react";
+import AccentSwatch from "@/components/AccentSwatch";
 import { sections, site } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
@@ -75,19 +76,27 @@ export default function Navbar({ home = true }: { home?: boolean }) {
       <nav
         aria-label="Primary"
         className={cn(
-          "mx-auto max-w-6xl rounded-2xl border px-4 py-2.5 transition-[background-color,border-color,box-shadow] duration-300 sm:px-5 lg:px-[1.9375rem]",
+          "mx-auto max-w-6xl rounded-lg border border-border/80 bg-background/70 py-2 pl-3 pr-2 backdrop-blur-xl transition-shadow duration-300 sm:pl-4 lg:px-[1.9375rem]",
           scrolled || open
-            ? "border-border/70 bg-background/75 shadow-[0_8px_30px_-12px_rgb(85_2_37/0.18)] backdrop-blur-xl"
-            : "border-transparent bg-transparent"
+            ? "shadow-[0_12px_32px_-14px_color-mix(in_srgb,var(--primary-900)_28%,transparent)]"
+            : "shadow-none"
         )}
       >
         <div className="flex items-center justify-between gap-4">
           <a
             href={home ? "#top" : "/"}
-            className="font-serif text-[1.45rem] leading-none tracking-tight text-foreground"
+            className="flex items-center gap-2.5 text-foreground"
             onClick={() => setOpen(false)}
           >
-            Nezira <span className="italic text-accent-text">Worku</span>
+            <span
+              aria-hidden="true"
+              className="flex h-8 w-8 items-center justify-center rounded-md bg-primary font-serif text-[15px] italic leading-none text-primary-foreground"
+            >
+              NW
+            </span>
+            <span className="font-serif text-[1.3rem] leading-none tracking-tight">
+              Nezira <span className="italic text-accent-text">Worku</span>
+            </span>
           </a>
 
           <ul className="hidden items-center gap-1 lg:flex">
@@ -97,7 +106,7 @@ export default function Navbar({ home = true }: { home?: boolean }) {
                   href={href(s.id)}
                   aria-current={active === s.id ? "true" : undefined}
                   className={cn(
-                    "relative rounded-full px-3 py-2 text-sm transition-colors",
+                    "relative rounded-md px-3 py-2 text-sm transition-colors",
                     active === s.id
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
@@ -120,7 +129,7 @@ export default function Navbar({ home = true }: { home?: boolean }) {
             <button
               type="button"
               onClick={() => window.dispatchEvent(new Event(OPEN_PALETTE_EVENT))}
-              className="hidden h-10 items-center gap-1.5 rounded-full border border-border bg-card/60 px-3 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
+              className="hidden h-9 items-center gap-1 rounded-md border border-border bg-card/60 px-2.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
               aria-label="Open command palette"
               aria-keyshortcuts="Control+K Meta+K"
             >
@@ -130,28 +139,28 @@ export default function Navbar({ home = true }: { home?: boolean }) {
             <button
               type="button"
               onClick={toggleTheme}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/60 text-foreground transition-colors hover:border-primary-300"
+              className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-card/60 text-foreground transition-colors hover:border-primary-300"
               aria-label="Toggle dark mode"
             >
-              <Moon className="h-[18px] w-[18px] dark:hidden" aria-hidden="true" />
-              <Sun className="hidden h-[18px] w-[18px] dark:block" aria-hidden="true" />
+              <Moon className="h-4 w-4 dark:hidden" aria-hidden="true" />
+              <Sun className="hidden h-4 w-4 dark:block" aria-hidden="true" />
             </button>
 
+            <AccentSwatch className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-card/60 transition-colors hover:border-primary-300" />
+
             <a
-              href={site.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden h-10 items-center gap-2 rounded-full bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-600 sm:inline-flex"
+              href={href("contact")}
+              className="hidden h-9 items-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-[inset_0_1px_0_rgb(255_255_255/0.18)] transition-colors hover:bg-primary-600 sm:inline-flex"
             >
-              <FileText className="h-4 w-4" aria-hidden="true" />
-              Résumé
+              <Send className="h-4 w-4" aria-hidden="true" />
+              Contact me
             </a>
 
             <button
               ref={menuButton}
               type="button"
               onClick={() => setOpen((v) => !v)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/60 text-foreground lg:hidden"
+              className="flex h-9 w-9 items-center justify-center rounded-md border border-border bg-card/60 text-foreground lg:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="mobile-menu"
@@ -172,19 +181,19 @@ export default function Navbar({ home = true }: { home?: boolean }) {
                 <a
                   href={href(s.id)}
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-between rounded-xl px-3 py-3 text-base text-foreground hover:bg-lilac-soft"
+                  className="flex items-center justify-between rounded-md px-3 py-3 text-base text-foreground hover:bg-lilac-soft"
                 >
                   {s.label}
                   {active === s.id && <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />}
                 </a>
               </li>
             ))}
-            <li className="sm:hidden">
+            <li>
               <a
                 href={site.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-primary px-3 py-3 text-base font-medium text-primary-foreground"
+                className="mt-2 flex items-center justify-center gap-2 rounded-md bg-primary px-3 py-3 text-base font-medium text-primary-foreground"
               >
                 <FileText className="h-4 w-4" aria-hidden="true" />
                 Résumé
