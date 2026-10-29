@@ -94,7 +94,8 @@ Experience → How I work + recruiter FAQ → Skills → Education → Awards �
   `fetchPriority="high"` (`priority` is deprecated in Next 16).
 
 ## Second round (feedback from review)
-- Hero fills the first screen with the highlights strip at the bottom and lines up with the
+- Hero is exactly one screen tall (photo and spacing scale with screen height), so the
+  highlights strip is always visible at the bottom. It lines up with the
   navbar. The long intro paragraph is gone; a short facts row (latest role, both degrees,
   pulled from lib/data.ts) sits under the buttons. The photo is a rectangular framed card
   with rose corner brackets and an "Addis Ababa · GMT+3 · live time" caption.

@@ -15,10 +15,10 @@ const heroFacts = [
 
 export default function Hero() {
   return (
-    <section id="top" aria-labelledby="hero-title" className="relative flex min-h-[100svh] flex-col overflow-x-clip pt-32 sm:pt-36">
-      <div className="mx-auto my-auto grid w-full max-w-6xl items-center gap-14 px-4 pb-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
+    <section id="top" aria-labelledby="hero-title" className="relative flex h-[100svh] min-h-[36rem] flex-col overflow-x-clip pt-20 sm:pt-24">
+      <div className="mx-auto grid min-h-0 w-full max-w-6xl flex-1 items-center gap-10 px-4 py-4 sm:px-6 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-7">
-          <div className="mb-8 flex flex-wrap items-center gap-2.5">
+          <div className="mb-6 flex items-center justify-between gap-4 sm:mb-8 [@media(max-height:800px)]:mb-5">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3.5 py-1.5 text-sm text-foreground">
               <span className="relative flex h-2 w-2" aria-hidden="true">
                 <span className="absolute inset-0 animate-ping rounded-full bg-success opacity-60" />
@@ -26,21 +26,31 @@ export default function Hero() {
               </span>
               {site.availability}
             </span>
+            <span className="relative block w-20 shrink-0 rounded-sm border border-border bg-card p-1 shadow-sm [@media(min-height:800px)]:w-24 sm:w-28 lg:hidden">
+              <Image
+                src={site.photo.src}
+                alt=""
+                width={site.photo.width}
+                height={site.photo.height}
+                sizes="112px"
+                className="aspect-[4/5] w-full rounded-[2px] object-cover object-[50%_30%]"
+              />
+            </span>
           </div>
 
-          <p className="mb-5 font-mono text-xs uppercase tracking-[0.22em] text-accent-text sm:text-sm">
+          <p className="mb-4 font-mono text-xs uppercase tracking-[0.22em] text-accent-text sm:mb-5 sm:text-sm [@media(max-height:800px)]:mb-3">
             {site.role}
           </p>
 
-          <h1 id="hero-title" className="font-serif text-display tracking-[-0.02em] text-foreground">
+          <h1 id="hero-title" className="font-serif text-display tracking-[-0.02em] text-foreground [@media(max-height:800px)]:text-[clamp(2.6rem,1.6rem+3.6vw,4.75rem)]">
             Nezira Worku
           </h1>
 
-          <p className="mt-6 max-w-xl font-serif text-[clamp(1.5rem,1.1rem+1.6vw,2.4rem)] leading-[1.15] text-foreground">
+          <p className="mt-4 max-w-xl font-serif text-[clamp(1.45rem,1.1rem+1.4vw,2.2rem)] leading-[1.15] text-foreground sm:mt-6 [@media(max-height:800px)]:mt-3">
             I take your idea from <em className="text-gradient pr-1">concept</em> to production.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-3">
+          <div className="mt-7 flex flex-wrap items-center gap-3 sm:mt-9 [@media(max-height:800px)]:mt-6">
             <Magnetic>
               <a
                 href="#work"
@@ -68,17 +78,17 @@ export default function Hero() {
             </a>
           </div>
 
-          <dl className="mt-12 grid max-w-2xl grid-cols-1 gap-5 border-t border-border pt-6 sm:grid-cols-3 sm:gap-6">
+          <dl className="mt-8 grid max-w-2xl grid-cols-1 gap-3 border-t border-border pt-5 sm:mt-10 sm:grid-cols-3 sm:gap-6 [@media(max-height:800px)]:mt-6 [@media(max-height:800px)]:pt-4">
             {heroFacts.map((f) => (
               <div key={f.label}>
                 <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">{f.label}</dt>
-                <dd className="mt-1.5 text-sm leading-snug text-foreground">{f.value}</dd>
+                <dd className="mt-1 text-sm leading-snug text-foreground">{f.value}</dd>
               </div>
             ))}
           </dl>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[16rem] sm:max-w-[18rem] lg:col-span-5 lg:mr-3 lg:max-w-[20rem]">
+        <div className="relative hidden w-fit justify-self-end lg:col-span-5 lg:mr-3 lg:block">
           <div
             aria-hidden="true"
             data-decorative
@@ -90,7 +100,7 @@ export default function Hero() {
           <span aria-hidden="true" data-decorative className="absolute -bottom-3 -left-3 h-5 w-5 border-b-2 border-l-2 border-primary-400" />
           <span aria-hidden="true" data-decorative className="absolute -bottom-3 -right-3 h-5 w-5 border-b-2 border-r-2 border-primary-400" />
           <figure className="relative rounded-md border border-border bg-card p-3 shadow-[0_24px_50px_-28px_rgb(85_2_37/0.45)]">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-primary-50">
+            <div className="relative aspect-[4/5] h-[min(52svh,25rem)] overflow-hidden rounded-sm bg-primary-50">
               <Image
                 src={site.photo.src}
                 alt={site.photo.alt}
@@ -98,7 +108,7 @@ export default function Hero() {
                 height={site.photo.height}
                 loading="eager"
                 fetchPriority="high"
-                sizes="(min-width: 1024px) 296px, (min-width: 640px) 264px, 232px"
+                sizes="320px"
                 className="h-full w-full object-cover object-[50%_30%]"
               />
             </div>
@@ -116,7 +126,7 @@ export default function Hero() {
       </div>
 
       {/* Highlights strip */}
-      <div className="mt-14 border-y border-border/70 bg-card/40 py-4">
+      <div className="shrink-0 border-y border-border/70 bg-card/40 py-3.5 sm:py-4">
         <h2 className="sr-only">Highlights</h2>
         <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
           <div className="animate-marquee flex w-max motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center">
