@@ -127,12 +127,12 @@ export const caseStudies: CaseStudy[] = [
     summary: "A professional digital presence for a law office: services, expertise and contact in one clean site.",
     description:
       "A modern frontend website designed for Sadam Hussien Law Office to establish a professional digital presence. The interface presents legal services, company information, expertise, and contact details through a clean and responsive user experience.",
-    image: { src: "/shlo.png", width: 987, height: 711, alt: "Sadam Hussien Law Office website screenshot" },
+    image: { src: "/shlo.webp", width: 1280, height: 800, alt: "Sadam Hussein Law Office practice areas page" },
     role: "TODO(nezira): your exact role on this project",
     context: "Client website",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
     links: [
-      { label: "Live site", href: "https://law-firm-website-an1q-5175ijkbm.vercel.app/", kind: "live" },
+      { label: "Live site", href: "https://law-firm-website-blond.vercel.app/", kind: "live" },
       { label: "Source", href: "https://github.com/Jennah198/law-firm-website", kind: "code" },
     ],
     sections: {
@@ -152,12 +152,12 @@ export const caseStudies: CaseStudy[] = [
     summary: "A community platform that helps the Hira Muslim Students Association share its activities and resources.",
     description:
       "A digital platform for the Hira Muslim Student Association built to strengthen communication, community engagement, and access to organizational resources. The website provides information about HMSA, its activities, initiatives, and community programs through a responsive modern interface.",
-    image: { src: "/hmsa1.png", width: 987, height: 597, alt: "HMSA website hero section screenshot" },
+    image: { src: "/hmsa.webp", width: 1440, height: 900, alt: "Hira Muslim Students Association website home page" },
     role: "TODO(nezira): your exact role on this project",
     context: "Hira Muslim Students Association",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
     links: [
-      { label: "Live site", href: "https://v0-hira-muslim-association-website.vercel.app/", kind: "live" },
+      { label: "Live site", href: "https://hira-muslim-students-association.vercel.app/", kind: "live" },
       { label: "Source", href: "https://github.com/Jennah198/hira-portfolio", kind: "code" },
     ],
     sections: {
@@ -171,14 +171,41 @@ export const caseStudies: CaseStudy[] = [
       outcome: ["TODO(nezira): real outcomes only (members reached, events published…)."],
     },
   },
+  {
+    slug: "habesha-harvest",
+    title: "Habesha Harvest",
+    summary: "A marketing site for an injera export business that turns overseas restaurants and stores into quote requests.",
+    description:
+      "Habesha Harvest is the marketing website for a teff injera export business based in Addis Ababa. It presents the products, shows how the injera is made, explains how restaurants and stores can order, and collects quote requests.",
+    image: { src: "/habesha-harvest.webp", width: 1440, height: 900, alt: "Habesha Harvest website home page" },
+    role: "TODO(nezira): your exact role on this project",
+    context: "Export business website",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
+    links: [
+      { label: "Live site", href: "https://habesha-harvest.vercel.app", kind: "live" },
+      { label: "Source", href: "https://github.com/Jennah198/habesha-harvest", kind: "code" },
+    ],
+    sections: {
+      problem: [
+        "An injera export business needed to reach restaurants and stores abroad: show its products, explain how the injera is made and how ordering works, and turn interest into quote requests.",
+      ],
+      role: ["TODO(nezira): design + build alone, or with a team? Who was the client?"],
+      architecture: [
+        "A Next.js App Router site in TypeScript, styled with Tailwind CSS and shadcn/ui in a soft claymorphism design system, with framer-motion scroll animations.",
+        "The order form is validated with react-hook-form and zod and includes a country selector for international buyers.",
+      ],
+      challenges: ["TODO(nezira): a real challenge from this build."],
+      outcome: ["TODO(nezira): real outcomes only (launch date, quote requests received, client feedback…)."],
+    },
+  },
 ];
 
 export type MiniProject = { name: string; href: string };
 
 export const moreProjects: MiniProject[] = [
+  { name: "hidl", href: "https://github.com/fetehadin/hidl" },
   { name: "Womens Safety System", href: "https://github.com/Jennah198/womens-safety-system" },
   { name: "MotivateMe Bot", href: "https://github.com/Jennah198/motivate-me-bot" },
-  { name: "Habesha Harvest", href: "https://github.com/Jennah198/habesha-harvest" },
   { name: "Block Chain", href: "https://github.com/Jennah198/block-chain" },
   { name: "Smart Complaint and Issue Tracking System", href: "https://github.com/Jennah198/Smart-Complaint-and-Issue-Tracking-System" },
   { name: "Capstone Project", href: "https://github.com/Jennah198/capstone-frontend" },
@@ -326,18 +353,29 @@ export const skillGroups: { title: string; skills: Skill[] }[] = [
     skills: [
       { name: "Next.js", icon: "nextjs", mono: true },
       { name: "React", icon: "react" },
+      { name: "React Query", icon: "reactquery" },
       { name: "Tailwind CSS", icon: "tailwindcss" },
       { name: "shadcn/ui", icon: "shadcnui", mono: true },
       { name: "Bootstrap", icon: "bootstrap" },
+      { name: "Responsive Design", icon: "responsive", mono: true },
     ],
   },
   {
     title: "Backend & ERP",
     skills: [
       { name: "Odoo", icon: "odoo", mono: true },
+      { name: "FastAPI", icon: "fastapi" },
       { name: "Node.js", icon: "nodejs" },
       { name: "Express.js", icon: "express", mono: true },
       { name: "Django", icon: "django" },
+    ],
+  },
+  {
+    title: "AI Engineering",
+    skills: [
+      { name: "LLM Integration", icon: "llm", mono: true },
+      { name: "RAG", icon: "rag", mono: true },
+      { name: "Embeddings", icon: "embeddings", mono: true },
     ],
   },
   {
@@ -345,6 +383,8 @@ export const skillGroups: { title: string; skills: Skill[] }[] = [
     skills: [
       { name: "PostgreSQL", icon: "postgresql" },
       { name: "MySQL", icon: "mysql" },
+      { name: "MongoDB", icon: "mongodb" },
+      { name: "Redis", icon: "redis" },
       { name: "Supabase", icon: "supabase" },
       { name: "Prisma", icon: "prisma", mono: true },
     ],
@@ -353,10 +393,30 @@ export const skillGroups: { title: string; skills: Skill[] }[] = [
     title: "Cloud & DevOps",
     skills: [
       { name: "Docker", icon: "docker" },
+      { name: "Linux", icon: "linux", mono: true },
+      { name: "GitHub Actions", icon: "githubactions" },
       { name: "Vercel", icon: "vercel", mono: true },
       { name: "AWS", icon: "aws" },
       { name: "Azure", icon: "azure" },
       { name: "Google Cloud", icon: "googlecloud" },
+    ],
+  },
+  {
+    title: "Testing",
+    skills: [
+      { name: "Jest", icon: "jest" },
+      { name: "Pytest", icon: "pytest" },
+      { name: "Postman", icon: "postman" },
+    ],
+  },
+  {
+    title: "Engineering Practices",
+    skills: [
+      { name: "REST APIs", icon: "rest-api", mono: true },
+      { name: "API Integration", icon: "api-integration", mono: true },
+      { name: "CI/CD", icon: "cicd", mono: true },
+      { name: "Authentication", icon: "auth", mono: true },
+      { name: "System Design", icon: "system-design", mono: true },
     ],
   },
   {

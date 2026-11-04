@@ -33,7 +33,7 @@ export default function Work() {
                   width={p.image.width}
                   height={p.image.height}
                   sizes="(min-width: 1152px) 560px, (min-width: 768px) 50vw, 100vw"
-                  className="h-full w-full rounded-xl object-cover object-top shadow-lg transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  className="h-full w-full rounded-xl object-cover object-left-top shadow-lg transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
               </div>
 
