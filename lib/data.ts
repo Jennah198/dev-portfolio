@@ -69,13 +69,23 @@ export const highlights = [
 
 export type ProjectLink = { label: string; href: string; kind: "live" | "code" | "frontend" | "backend" };
 
+export type ProjectImage = {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  /** Which side to keep when the card crops a wide screenshot (default "left"). */
+  focus?: "left" | "center";
+};
+
 export type CaseStudy = {
   slug: string;
   title: string;
   /** One-line outcome shown on the card. */
   summary: string;
   description: string;
-  image: { src: string; width: number; height: number; alt: string };
+  /** Screenshots shown in the card slider; the first one is the cover. */
+  images: ProjectImage[];
   role: string;
   context: string;
   stack: string[];
@@ -98,8 +108,14 @@ export const caseStudies: CaseStudy[] = [
       "A centralized Odoo ERP that runs a school's academic and administrative operations in one place.",
     description:
       "A comprehensive school management system built under NDA with Odoo to streamline academic and administrative operations. The system manages students, teachers, classes, enrollment, attendance, and school workflows through a centralized ERP architecture.",
-    image: { src: "/SMS.png", width: 981, height: 705, alt: "School Management System dashboard screenshot" },
-    role: "TODO(nezira): your exact role on this project",
+    images: [
+      { src: "/work/sms/sign-in.webp", width: 1600, height: 781, alt: "School Management System sign-in page", focus: "center" },
+      { src: "/work/sms/dashboard.webp", width: 1600, height: 755, alt: "School Management System administrator dashboard" },
+      { src: "/work/sms/students.webp", width: 1600, height: 787, alt: "Students list grouped by grade" },
+      { src: "/work/sms/enrolments.webp", width: 1600, height: 787, alt: "Enrolments list with one active enrolment per student per year" },
+      { src: "/work/sms/attendance.webp", width: 1600, height: 793, alt: "Attendance register with take-attendance form" },
+    ],
+    role: "Full-Stack Developer Intern, Backend Engineering (Odoo)",
     context: "Built under NDA",
     stack: ["Odoo", "Python", "PostgreSQL", "Next.js"],
     nda: true,
@@ -111,24 +127,43 @@ export const caseStudies: CaseStudy[] = [
       problem: [
         "Schools juggle students, teachers, classes, enrollment and attendance across separate tools and paperwork. The goal was to streamline academic and administrative operations in one system.",
       ],
-      role: ["TODO(nezira): what you personally built, and whether this was solo or team work (and team size)."],
-      architecture: [
-        "Built on Odoo with Python and PostgreSQL, using a centralized ERP architecture so every school workflow shares one data model.",
-        "A separate Next.js frontend sits in front of the Odoo backend.",
-        "TODO(nezira): key modules, data model decisions, and how the frontend talks to Odoo (REST, JSON-RPC, …).",
+      role: [
+        "I joined the team building the school management system as a full-stack intern, focusing primarily on backend engineering with Odoo 19, Python and PostgreSQL, with responsibilities spanning data modeling, business logic, access control and frontend-backend integration.",
+        "- Developed and worked with Odoo models and relational data structures.",
+        "- Implemented business logic, ORM constraints and data integrity rules.",
+        "- Worked on access control and backend security.",
+        "- Supported student, teacher, class, enrollment and attendance workflows.",
+        "- Contributed to integrating the Odoo backend with the Next.js frontend.",
       ],
-      challenges: ["TODO(nezira): the hardest technical problem and how you solved it."],
-      outcome: ["TODO(nezira): real outcomes only, e.g. number of modules, users, or schools using it."],
+      architecture: [
+        "The system uses Odoo 19 as its ERP backend, Python for business logic, and PostgreSQL for relational data storage.",
+        "The Next.js frontend provides a separate user interface that communicates with the Odoo backend through its API layer.",
+        "The data model uses relational structures to keep students, teachers, classes, academic years, enrollments and attendance records consistent. Business rules and access restrictions are enforced at the backend level to protect data integrity.",
+      ],
+      challenges: [
+        "Maintaining data integrity across interconnected academic records was one of the main technical challenges.",
+        "I worked with Odoo ORM constraints, model-level validations and access control mechanisms to enforce business rules and prevent invalid operations, including the relationships between students, academic years and enrollment records.",
+      ],
+      outcome: [
+        "Delivered contributions to a centralized school management platform covering core academic and administrative workflows: student management, teacher management, classes, enrollment and attendance.",
+        "The project has a deployed Next.js frontend and a separately hosted backend.",
+      ],
     },
   },
   {
     slug: "sadam-hussien-law-office",
-    title: "Sadam Hussien Law Office",
+    title: "Sadam Hussein Law Office",
     summary: "A professional digital presence for a law office: services, expertise and contact in one clean site.",
     description:
       "A modern frontend website designed for Sadam Hussien Law Office to establish a professional digital presence. The interface presents legal services, company information, expertise, and contact details through a clean and responsive user experience.",
-    image: { src: "/shlo.webp", width: 1280, height: 800, alt: "Sadam Hussein Law Office practice areas page" },
-    role: "TODO(nezira): your exact role on this project",
+    images: [
+      { src: "/work/shlo/home.webp", width: 1600, height: 781, alt: "Sadam Hussein Law Office home page hero" },
+      { src: "/work/shlo/services.webp", width: 1600, height: 792, alt: "Comprehensive legal services section" },
+      { src: "/work/shlo/corporate-law.webp", width: 1600, height: 790, alt: "Corporate law practice area page" },
+      { src: "/work/shlo/team.webp", width: 1600, height: 783, alt: "Our team section with the founder's profile", focus: "center" },
+      { src: "/work/shlo/csr.webp", width: 1600, height: 788, alt: "Community commitment (CSR) section", focus: "center" },
+    ],
+    role: "Frontend Developer and Project Manager",
     context: "Client website",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
     links: [
@@ -137,13 +172,25 @@ export const caseStudies: CaseStudy[] = [
     ],
     sections: {
       problem: ["The law office needed a professional digital presence that clearly presents its legal services, company information, expertise and contact details."],
-      role: ["TODO(nezira): design + build alone, or with a team? Who was the client contact?"],
+      role: [
+        "I led the frontend implementation and contributed to project planning and coordination.",
+        "- Translated the business requirements into a structured website experience.",
+        "- Designed and implemented responsive interfaces using Next.js and TypeScript.",
+        "- Built reusable UI components using Tailwind CSS and shadcn/ui.",
+        "- Organized website content around legal services, practice areas, company information and contact channels.",
+        "- Coordinated development tasks and ensured consistency across website sections.",
+      ],
       architecture: [
         "A frontend site built with Next.js and TypeScript, styled with Tailwind CSS and shadcn/ui components.",
         "Designed to be clean and responsive across devices.",
       ],
-      challenges: ["TODO(nezira): a real challenge from this build (content, design, performance, client feedback…)."],
-      outcome: ["TODO(nezira): real outcomes only (launched date, client feedback, inquiries…)."],
+      challenges: [
+        "Structuring extensive legal service information into a clear and accessible user experience was the key design challenge.",
+        "I organized the content into dedicated sections and practice area pages, using reusable components and consistent layouts to keep the site visually clear and easy to navigate.",
+      ],
+      outcome: [
+        "Developed and deployed a professional website for Sadam Hussein Law Office, giving the firm a centralized digital presence for its legal services, practice areas, team information and contact details.",
+      ],
     },
   },
   {
@@ -152,8 +199,14 @@ export const caseStudies: CaseStudy[] = [
     summary: "A community platform that helps the Hira Muslim Students Association share its activities and resources.",
     description:
       "A digital platform for the Hira Muslim Student Association built to strengthen communication, community engagement, and access to organizational resources. The website provides information about HMSA, its activities, initiatives, and community programs through a responsive modern interface.",
-    image: { src: "/hmsa.webp", width: 1440, height: 900, alt: "Hira Muslim Students Association website home page" },
-    role: "TODO(nezira): your exact role on this project",
+    images: [
+      { src: "/work/hmsa/home.webp", width: 1600, height: 754, alt: "Hira Muslim Students Association home page" },
+      { src: "/work/hmsa/about.webp", width: 1600, height: 788, alt: "HMSA about us section" },
+      { src: "/work/hmsa/programs.webp", width: 1600, height: 787, alt: "HMSA programs and initiatives", focus: "center" },
+      { src: "/work/hmsa/membership.webp", width: 1600, height: 789, alt: "Three steps to join the community", focus: "center" },
+      { src: "/work/hmsa/graduation.webp", width: 1600, height: 788, alt: "HMSA graduation ceremony event page" },
+    ],
+    role: "Lead Developer and Technical Team Leader",
     context: "Hira Muslim Students Association",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
     links: [
@@ -162,13 +215,26 @@ export const caseStudies: CaseStudy[] = [
     ],
     sections: {
       problem: ["HMSA needed a central place to strengthen communication and community engagement, and to give members access to organizational resources."],
-      role: ["TODO(nezira): your part vs. the team's, and team size."],
-      architecture: [
-        "A Next.js and TypeScript site styled with Tailwind CSS, with Supabase as the backend.",
-        "TODO(nezira): what Supabase stores (events, members, resources?) and how content is managed.",
+      role: [
+        "I led the technical development of the HMSA digital platform, owning its technical direction and frontend development and coordinating the development team.",
+        "- Planned and implemented the website architecture.",
+        "- Developed responsive interfaces using Next.js and TypeScript.",
+        "- Integrated Supabase for backend services.",
+        "- Structured the website around organizational information, programs, initiatives, events and membership.",
+        "- Coordinated technical development and kept the implementation on direction.",
       ],
-      challenges: ["TODO(nezira): a real challenge from this build."],
-      outcome: ["TODO(nezira): real outcomes only (members reached, events published…)."],
+      architecture: [
+        "Built with Next.js and TypeScript, using Tailwind CSS for styling and Supabase for backend services.",
+        "The architecture separates the presentation layer from backend services, with the frontend talking to Supabase for data operations.",
+        "The platform is structured to support organizational content, community programs, events and membership information.",
+      ],
+      challenges: [
+        "Bringing many different organizational activities into one platform while keeping the interface easy to navigate was the key challenge.",
+        "I addressed it with reusable components, structured content sections and consistent navigation patterns. The architecture also lets the platform grow as the association adds new programs and resources.",
+      ],
+      outcome: [
+        "Developed and deployed a centralized digital platform for the Hira Muslim Students Association, giving it an online presence for its activities, programs, events, organizational information and community engagement.",
+      ],
     },
   },
   {
@@ -177,9 +243,15 @@ export const caseStudies: CaseStudy[] = [
     summary: "A marketing site for an injera export business that turns overseas restaurants and stores into quote requests.",
     description:
       "Habesha Harvest is the marketing website for a teff injera export business based in Addis Ababa. It presents the products, shows how the injera is made, explains how restaurants and stores can order, and collects quote requests.",
-    image: { src: "/habesha-harvest.webp", width: 1440, height: 900, alt: "Habesha Harvest website home page" },
-    role: "TODO(nezira): your exact role on this project",
-    context: "Export business website",
+    images: [
+      { src: "/work/habesha/home.webp", width: 1600, height: 784, alt: "Habesha Harvest home page" },
+      { src: "/work/habesha/categories.webp", width: 1600, height: 785, alt: "Best delivered injera categories", focus: "center" },
+      { src: "/work/habesha/products.webp", width: 1600, height: 778, alt: "Product showcase: crafted with tradition", focus: "center" },
+      { src: "/work/habesha/how-to-order.webp", width: 1600, height: 779, alt: "How to order in four steps", focus: "center" },
+      { src: "/work/habesha/gallery.webp", width: 1600, height: 787, alt: "Gallery of injera around the world with the chat assistant open", focus: "center" },
+    ],
+    role: "Frontend Developer and UI Engineer (solo)",
+    context: "Local client · Ethiopia",
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
     links: [
       { label: "Live site", href: "https://habesha-harvest.vercel.app", kind: "live" },
@@ -189,13 +261,27 @@ export const caseStudies: CaseStudy[] = [
       problem: [
         "An injera export business needed to reach restaurants and stores abroad: show its products, explain how the injera is made and how ordering works, and turn interest into quote requests.",
       ],
-      role: ["TODO(nezira): design + build alone, or with a team? Who was the client?"],
+      role: [
+        "I built Habesha Harvest on my own for a local client in Ethiopia, owning the interface design, frontend implementation and user experience, with a focus on presenting the business and its products to international buyers.",
+        "- Implemented the website using Next.js and TypeScript.",
+        "- Developed responsive interfaces with Tailwind CSS and shadcn/ui.",
+        "- Created product showcases, category sections and ordering information.",
+        "- Implemented international quote request forms using React Hook Form and Zod.",
+        "- Integrated a country selector to support inquiries from abroad.",
+        "- Added Framer Motion animations to improve the browsing experience.",
+      ],
       architecture: [
         "A Next.js App Router site in TypeScript, styled with Tailwind CSS and shadcn/ui in a soft claymorphism design system, with framer-motion scroll animations.",
         "The order form is validated with react-hook-form and zod and includes a country selector for international buyers.",
       ],
-      challenges: ["TODO(nezira): a real challenge from this build."],
-      outcome: ["TODO(nezira): real outcomes only (launch date, quote requests received, client feedback…)."],
+      challenges: [
+        "Designing an effective ordering experience for international buyers was the key challenge.",
+        "The website needed to communicate product information, explain the ordering process, and collect structured inquiries from many different countries.",
+        "I addressed this by organizing the content into clear product categories, adding a step-by-step ordering section, and building validated quote request forms with international country selection.",
+      ],
+      outcome: [
+        "Developed and deployed a marketing website for Habesha Harvest that showcases its products online, explains the international ordering process, and gives buyers a structured channel for quote requests.",
+      ],
     },
   },
 ];

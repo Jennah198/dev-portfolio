@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Lock } from "lucide-react";
@@ -8,12 +7,25 @@ import Footer from "@/components/Footer";
 import { TodoNote, showTodos } from "@/components/TodoNote";
 import { caseStudies, isTodo, site } from "@/lib/data";
 import { StackPill, TechChips } from "@/components/StackPill";
+import { ProjectSlider } from "@/components/ProjectSlider";
 
 export function generateStaticParams() {
   return caseStudies.map((c) => ({ slug: c.slug }));
 }
 
 export const dynamicParams = false;
+
+/** Section strings starting with "- " are bullets; consecutive ones become one list. */
+function groupBullets(items: string[]): (string | string[])[] {
+  const out: (string | string[])[] = [];
+  for (const item of items) {
+    const last = out[out.length - 1];
+    if (!item.startsWith("- ")) out.push(item);
+    else if (Array.isArray(last)) last.push(item);
+    else out.push([item]);
+  }
+  return out;
+}
 
 export async function generateMetadata({ params }: PageProps<"/work/[slug]">): Promise<Metadata> {
   const { slug } = await params;
@@ -96,18 +108,15 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
             </div>
           </dl>
 
-          <figure className="relative mt-12 overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary-50 to-lilac-soft p-4 sm:p-8 dark:from-primary-900/40">
-            <Image
-              src={study.image.src}
-              alt={study.image.alt}
-              width={study.image.width}
-              height={study.image.height}
-              loading="eager"
-              fetchPriority="high"
+          <figure className="relative mt-12 aspect-[16/10] overflow-hidden rounded-3xl border border-border bg-muted">
+            <ProjectSlider
+              images={study.images}
+              title={study.title}
               sizes="(min-width: 896px) 832px, 100vw"
-              className="w-full rounded-xl shadow-xl"
+              priority
+              className="absolute inset-0"
             />
-            <StackPill stack={study.stack} className="absolute right-6 top-6 sm:right-10 sm:top-10" />
+            <StackPill stack={study.stack} className="absolute right-4 top-4 z-10 sm:right-6 sm:top-6" />
           </figure>
 
           <div className="mt-16 space-y-14">
@@ -123,7 +132,19 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
                 <section key={key} aria-labelledby={`ch-${key}`}>
                   <h2 id={`ch-${key}`} className="font-serif text-h3">{title}</h2>
                   <div className="mt-4 space-y-4 text-lead text-muted-foreground">
-                    {paragraphs.map((p) => (isTodo(p) ? <TodoNote key={p} text={p} /> : <p key={p}>{p}</p>))}
+                    {groupBullets(paragraphs).map((block) =>
+                      Array.isArray(block) ? (
+                        <ul key={block[0]} className="list-disc space-y-2 pl-6 marker:text-accent-text">
+                          {block.map((item) => (
+                            <li key={item}>{item.slice(2)}</li>
+                          ))}
+                        </ul>
+                      ) : isTodo(block) ? (
+                        <TodoNote key={block} text={block} />
+                      ) : (
+                        <p key={block}>{block}</p>
+                      )
+                    )}
                   </div>
                 </section>
               );

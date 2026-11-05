@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Lock } from "lucide-react";
 import { caseStudies, githubProfile, isTodo, moreProjects } from "@/lib/data";
@@ -6,6 +5,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
 import { GithubIcon } from "@/components/icons";
 import { StackPill } from "@/components/StackPill";
+import { ProjectSlider } from "@/components/ProjectSlider";
 
 export default function Work() {
   return (
@@ -21,34 +21,33 @@ export default function Work() {
         }
       />
 
-      <ol className="grid gap-8">
+      <ol className="grid gap-6">
         {caseStudies.map((p, i) => (
           <Reveal as="li" key={p.slug}>
             <article className="project gradient-border group grid overflow-hidden rounded-3xl border border-border bg-card/70 md:grid-cols-12">
-              <div className="relative overflow-hidden bg-gradient-to-br from-primary-50 to-lilac-soft p-4 sm:p-6 md:col-span-6 dark:from-primary-900/40">
+              {/* z-10 keeps swipes and controls above the mobile full-card link. */}
+              <div className="relative z-10 aspect-[16/10] bg-muted md:col-span-6 md:aspect-auto md:min-h-full">
                 <StackPill stack={p.stack} className="project-pill" />
-                <Image
-                  src={p.image.src}
-                  alt={p.image.alt}
-                  width={p.image.width}
-                  height={p.image.height}
-                  sizes="(min-width: 1152px) 560px, (min-width: 768px) 50vw, 100vw"
-                  className="h-full w-full rounded-xl object-cover object-left-top shadow-lg transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                <ProjectSlider
+                  images={p.images}
+                  title={p.title}
+                  sizes="(min-width: 1152px) 576px, (min-width: 768px) 50vw, 100vw"
+                  className="absolute inset-0"
                 />
               </div>
 
-              <div className="flex flex-col p-6 sm:p-8 md:col-span-6">
+              <div className="flex flex-col p-5 sm:p-6 lg:px-7 md:col-span-6">
                 <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
                   {String(i + 1).padStart(2, "0")} · {p.context}
                 </p>
-                <h3 className="mt-3 font-serif text-h3 text-foreground">
+                <h3 className="mt-2 font-serif text-h3 text-foreground">
                   <Link href={`/work/${p.slug}`} className="after:absolute after:inset-0 md:after:content-none">
                     {p.title}
                   </Link>
                 </h3>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground">{p.summary}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{p.summary}</p>
 
-                <dl className="mt-6 grid gap-4 border-t border-border pt-5 text-[15px] leading-relaxed">
+                <dl className="mt-4 grid gap-3 border-t border-border pt-4 text-sm leading-relaxed">
                   {[
                     ["The problem", p.sections.problem.find((t) => !isTodo(t))],
                     ["How it's built", p.sections.architecture.find((t) => !isTodo(t))],
@@ -64,7 +63,7 @@ export default function Work() {
                 </dl>
 
 
-                <div className="relative z-10 mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-7">
+                <div className="relative z-10 mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-5">
                   <Link
                     href={`/work/${p.slug}`}
                     className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary-600"
